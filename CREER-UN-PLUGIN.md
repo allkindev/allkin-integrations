@@ -38,8 +38,8 @@ plugins/bonjour/
 └── server.js
 ```
 
-Pas de fichier de validation (depuis le 27/10/2026) : ce qui est dans l'Exchange y a été publié
-par le superviseur du site Allkin, et rien n'y arrive autrement.
+Pas de fichier de validation : ce qui est dans un dépôt d'Allkin y a été publié par Allkin et
+vaut validé ; ce qui vient d'un autre dépôt est montré « non vérifié par Allkin ».
 
 ### `plugin.json`
 
@@ -237,7 +237,7 @@ Le `name` de l'en-tête est **le nom du dossier**. Une compétence
 n'accorde aucun droit : `allowed-tools` est ignoré. Le standard complet est
 `plugins/creator/standard/SKILL-STANDARD.md` dans le dépôt expérimental ; `scripts/catalogue.mjs`
 la liste dans `catalogue.json` sous `skills`, avec ses fichiers et leurs empreintes. Dans Allkin,
-la page **Exchange** l'installe, et la page d'un agent (section Portée) la lui donne.
+la page d'un agent (section Portée) la lui donne, ce qui la télécharge au passage.
 
 ---
 
