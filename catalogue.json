@@ -1,0 +1,482 @@
+{
+  "schemaVersion": 1,
+  "plugins": [
+    {
+      "id": "home-assistant-bridge",
+      "name": "Pont Home Assistant",
+      "version": "1.0.4",
+      "description": "Vos agents réagissent à la maison : un événement Home Assistant (une porte qui s'ouvre, un capteur, un bouton) réveille l'agent de votre choix avec le message que vous avez écrit, et sa réponse revient en notification dans Home Assistant.",
+      "author": "Allkin",
+      "permissions": [
+        {
+          "id": "network",
+          "reason": "Reste connecté au websocket de Home Assistant pour recevoir ses événements, et y renvoie les réponses des agents en notification."
+        },
+        {
+          "id": "agents",
+          "reason": "Réveille l'agent désigné par chaque règle par la socket d'Allkin, et lui transmet le message de la règle."
+        }
+      ],
+      "service": true,
+      "web": false,
+      "ui": false,
+      "icon": "icon.svg",
+      "updatedAt": "2026-11-03T10:54:32.986Z",
+      "locales": {
+        "en": {
+          "name": "Home Assistant bridge",
+          "description": "Your agents react to the house: a Home Assistant event (a door opening, a sensor, a button) wakes the agent of your choice with the message you wrote, and its answer comes back as a notification in Home Assistant.",
+          "permissions": {
+            "network": "Stays connected to Home Assistant's websocket to receive its events, and sends the agents' answers back as notifications.",
+            "agents": "Wakes the agent named by each rule through Allkin's socket, and passes it the rule's message."
+          }
+        },
+        "es": {
+          "name": "Puente Home Assistant",
+          "description": "Tus agentes reaccionan a la casa: un evento de Home Assistant (una puerta que se abre, un sensor, un botón) despierta al agente que elijas con el mensaje que escribiste, y su respuesta vuelve como notificación en Home Assistant.",
+          "permissions": {
+            "network": "Permanece conectado al websocket de Home Assistant para recibir sus eventos, y devuelve las respuestas de los agentes como notificaciones.",
+            "agents": "Despierta al agente indicado por cada regla a través del socket de Allkin, y le pasa el mensaje de la regla."
+          }
+        },
+        "de": {
+          "name": "Home-Assistant-Brücke",
+          "description": "Deine Agenten reagieren auf das Haus: Ein Home-Assistant-Ereignis (eine Tür geht auf, ein Sensor, ein Taster) weckt den gewählten Agenten mit der Nachricht, die du geschrieben hast, und seine Antwort kommt als Benachrichtigung in Home Assistant zurück.",
+          "permissions": {
+            "network": "Bleibt mit dem Websocket von Home Assistant verbunden, um seine Ereignisse zu empfangen, und schickt die Antworten der Agenten als Benachrichtigungen zurück.",
+            "agents": "Weckt den in jeder Regel genannten Agenten über die Socket von Allkin und übergibt ihm die Nachricht der Regel."
+          }
+        }
+      },
+      "files": [
+        {
+          "path": "README-DE.md",
+          "size": 3029,
+          "sha256": "9ed7d6a91b7c0e97909fb9bf2b6c5dff2f1151abe72d869c0b0244fe1ff64de3"
+        },
+        {
+          "path": "README-EN.md",
+          "size": 2731,
+          "sha256": "fc05a16300fb102ac30f78f47cb997cf47c97ee839e5362f6f3414dab5b96dbd"
+        },
+        {
+          "path": "README-ES.md",
+          "size": 2918,
+          "sha256": "a9b49bc99b8c736100b44979394dde50f8a27f6b313689249bc4e24c43155d5f"
+        },
+        {
+          "path": "README.md",
+          "size": 3019,
+          "sha256": "e500fb3cc8e0c0fab97638010b9c885915c7059ef8cb5973eef9a49df929abcf"
+        },
+        {
+          "path": "bridge.mjs",
+          "size": 12692,
+          "sha256": "79584fcd61c0e49a339749db84833b32bb04291b78e5b7c8cc062982c54b0538"
+        },
+        {
+          "path": "icon.svg",
+          "size": 523,
+          "sha256": "04933aab4a0ea741a0ebabd0983a8ffc0bb73f56d89171d5327a6e906ed2d2a0"
+        },
+        {
+          "path": "plugin.json",
+          "size": 8858,
+          "sha256": "f4d4244c38811fcc1e08c979ee2929f9b4012c5d2e4468b3ccee30622d7cc6dd"
+        }
+      ]
+    },
+    {
+      "id": "notes",
+      "name": "Bloc-notes",
+      "version": "1.0.6",
+      "description": "Des notes rangées par dossiers, écrites dans l'éditeur markdown d'Allkin : un arbre de dossiers et de notes, recherche, épingles, corbeille, images, et « Demander à un agent » pour envoyer une note dans une conversation. Chaque note est un fichier .md du dossier partagé, que les agents lisent et écrivent aussi.",
+      "author": "Allkin",
+      "permissions": [
+        {
+          "id": "interface",
+          "reason": "Ajoute le bloc-notes à la page d'Allkin : son onglet et son entrée dans la liste des intégrations."
+        }
+      ],
+      "service": false,
+      "web": false,
+      "ui": true,
+      "icon": "icon.svg",
+      "requires": [
+        "markdown-editor"
+      ],
+      "updatedAt": "2026-11-03T10:54:32.989Z",
+      "locales": {
+        "en": {
+          "name": "Notes",
+          "description": "Notes filed in folders, written in Allkin's Markdown editor: a tree of folders and notes, search, pins, bin, images, and “Ask an agent” to send a note into a conversation. Each note is a .md file of the shared folder, which the agents read and write too.",
+          "permissions": {
+            "interface": "Adds the notepad to the Allkin page: its tab and its entry in the list of integrations."
+          }
+        },
+        "es": {
+          "name": "Bloc de notas",
+          "description": "Notas ordenadas en carpetas, escritas en el editor Markdown de Allkin: un árbol de carpetas y notas, búsqueda, notas fijadas, papelera, imágenes y «Preguntar a un agente» para enviar una nota a una conversación. Cada nota es un archivo .md de la carpeta compartida, que los agentes también leen y escriben.",
+          "permissions": {
+            "interface": "Añade el bloc de notas a la página de Allkin: su pestaña y su entrada en la lista de integraciones."
+          }
+        },
+        "de": {
+          "name": "Notizen",
+          "description": "Notizen in Ordnern, geschrieben im Markdown-Editor von Allkin: ein Baum aus Ordnern und Notizen, Suche, angeheftete Notizen, Papierkorb, Bilder und „Einen Agenten fragen“, um eine Notiz in eine Unterhaltung zu schicken. Jede Notiz ist eine .md-Datei im gemeinsamen Ordner, die auch die Agenten lesen und schreiben.",
+          "permissions": {
+            "interface": "Fügt der Allkin-Seite den Notizblock hinzu: seinen Tab und seinen Eintrag in der Integrationsliste."
+          }
+        }
+      },
+      "files": [
+        {
+          "path": "README-DE.md",
+          "size": 7048,
+          "sha256": "14c2db798a15cb52118c25d57d976aceeb8f11f00e85a11c273e11c44c654b98"
+        },
+        {
+          "path": "README-EN.md",
+          "size": 6207,
+          "sha256": "a93d93b176b1e525bff823b988176eb664243ed6182f095efce9b5f2ada1d500"
+        },
+        {
+          "path": "README-ES.md",
+          "size": 6689,
+          "sha256": "30e07f6cb724d0a05a96123daa4c402fa7a3ee2431a8156d1acd7bc5257e4bdd"
+        },
+        {
+          "path": "README.md",
+          "size": 6956,
+          "sha256": "72b16616ba8f7188de60a569582629ca7906258246ac1c2c5e992fbf6782f528"
+        },
+        {
+          "path": "icon.svg",
+          "size": 396,
+          "sha256": "713c5c984016c67a0db57b2e4152218e536ebba23ff52aa3905058b4d73dac9e"
+        },
+        {
+          "path": "locales.js",
+          "size": 25358,
+          "sha256": "d613e9de926fbe5053c67fc0759c3c85e31367cf3fa2f094471e34b7ac57513d"
+        },
+        {
+          "path": "notes.css",
+          "size": 15960,
+          "sha256": "dab8755c2247e13f30f3cf629082b8b0ee65fb9eb3cfbea4d1d5da505be1298b"
+        },
+        {
+          "path": "notes.js",
+          "size": 73299,
+          "sha256": "aa836499bccf7e5cc70ccaffaa02f465671121612da24a4e7e5b0fb5bf0cfd61"
+        },
+        {
+          "path": "plugin.json",
+          "size": 2425,
+          "sha256": "910018898d04d6194e61120bbe099e4e3ad75bc6d68d63dc73926fdd31b145cb"
+        },
+        {
+          "path": "view.html",
+          "size": 7346,
+          "sha256": "4b76319268dd7a981e6f3edf94747c082fbe51c7a60fbe2a5ec32bd388520178"
+        }
+      ]
+    },
+    {
+      "id": "recordr",
+      "name": "Recordr",
+      "version": "1.0.7",
+      "description": "Écoute le micro, transcrit ce qui se dit au fil de la parole et distingue les interlocuteurs. La reconnaissance est faite par le service audio que vous choisissez.",
+      "author": "Allkin",
+      "permissions": [
+        {
+          "id": "network",
+          "reason": "Écoute sur un port local pour servir sa page dans Allkin. L'audio part du navigateur directement chez le service audio choisi, avec une clé temporaire qu'Allkin lui demande."
+        }
+      ],
+      "service": true,
+      "web": true,
+      "ui": false,
+      "icon": "icon.svg",
+      "updatedAt": "2026-11-03T10:54:32.991Z",
+      "locales": {
+        "en": {
+          "name": "Recordr",
+          "description": "Listens to the microphone, transcribes what is said as it is spoken and tells the speakers apart. Recognition is done by the audio service you choose.",
+          "permissions": {
+            "network": "Listens on a local port to serve its page in Allkin. The audio goes from the browser straight to the chosen audio service, with a temporary key Allkin asks it for."
+          }
+        },
+        "es": {
+          "name": "Recordr",
+          "description": "Escucha el micrófono, transcribe lo que se dice a medida que se habla y distingue a los interlocutores. El reconocimiento lo hace el servicio de audio que elijas.",
+          "permissions": {
+            "network": "Escucha en un puerto local para servir su página en Allkin. El audio va del navegador directamente al servicio de audio elegido, con una clave temporal que Allkin le pide."
+          }
+        },
+        "de": {
+          "name": "Recordr",
+          "description": "Hört dem Mikrofon zu, schreibt mit, was gesagt wird, während gesprochen wird, und unterscheidet die Sprecher. Die Erkennung übernimmt der Audiodienst, den du wählst.",
+          "permissions": {
+            "network": "Lauscht auf einem lokalen Port, um seine Seite in Allkin auszuliefern. Der Ton geht vom Browser direkt zum gewählten Audiodienst, mit einem temporären Schlüssel, den Allkin dort anfordert."
+          }
+        }
+      },
+      "files": [
+        {
+          "path": "README-DE.md",
+          "size": 5969,
+          "sha256": "5920fd1342ab8bea712c20899c5f50d4f277393d25dee953e9e49e0e3ae190ac"
+        },
+        {
+          "path": "README-EN.md",
+          "size": 5406,
+          "sha256": "1c85f7a7e64f7ebc20b063e1c89da1d38fe430f5be3fb5820f3966c66a67042a"
+        },
+        {
+          "path": "README-ES.md",
+          "size": 5752,
+          "sha256": "8feacd15860cb29759688ad5a733d3967ca522b907afc1c495e608ac66c55e6a"
+        },
+        {
+          "path": "README.md",
+          "size": 5871,
+          "sha256": "ac671c39b247ef61da24594e49df579c88c8d41a7fe0a32bbca59fd30ff5d887"
+        },
+        {
+          "path": "icon.svg",
+          "size": 500,
+          "sha256": "0083e408f3934c2da9c1b61ff4dd82bad407d099c715a1c3199cef9b598bd1e4"
+        },
+        {
+          "path": "plugin.json",
+          "size": 5946,
+          "sha256": "39f48c92765a014b338889ef232a758ecebed8900e5c8325c00254aa2e7dcbb7"
+        },
+        {
+          "path": "server.mjs",
+          "size": 7748,
+          "sha256": "8b1dd43783aa9e8d02aa5849abdf7d673abcfb07cc55c37d2a28b56d477417f4"
+        },
+        {
+          "path": "web/app.js",
+          "size": 53184,
+          "sha256": "c8647ca23c3f7eca0025191a5554303afae0ed3f20aaa92bd229e40fcdcd2038"
+        },
+        {
+          "path": "web/index.html",
+          "size": 13866,
+          "sha256": "4603519efe813ca1ef76d4363293acbad575c134cc5e72cd7b646b9774edfafa"
+        },
+        {
+          "path": "web/locales.js",
+          "size": 19819,
+          "sha256": "a9ac4e4c9654fd0a452c51b924186fb04d204efb8abdbf94ee366fa292b5b996"
+        },
+        {
+          "path": "web/stream.js",
+          "size": 9724,
+          "sha256": "9ef13f676746cf35629f7cf79e2e66d80ed1396dceffdd5df24dca919fb8dd56"
+        },
+        {
+          "path": "web/style.css",
+          "size": 25039,
+          "sha256": "32e3822d8c8a39017120cd1402813f1f48534303228a3e51836fb65f9c7bc782"
+        },
+        {
+          "path": "web/worklet.js",
+          "size": 1722,
+          "sha256": "7adf161c6212b16a02b4d03f988de5b4727bbcf5fce61ee1fa884acb7333ffbb"
+        }
+      ]
+    },
+    {
+      "id": "telegram-bridge",
+      "name": "Pont Telegram",
+      "version": "1.0.4",
+      "description": "Parlez à vos agents depuis Telegram : un bot écoute en continu, relaie chaque message à l'agent de votre choix et renvoie sa réponse. Les commandes à valider arrivent avec deux boutons.",
+      "author": "Allkin",
+      "permissions": [
+        {
+          "id": "network",
+          "reason": "Interroge l'API de Telegram en continu (long polling) et y renvoie les réponses des agents ; télécharge les fichiers reçus."
+        },
+        {
+          "id": "agents",
+          "reason": "Ouvre une conversation avec l'agent choisi par la socket d'Allkin, lui transmet les messages et valide ou refuse ses commandes depuis Telegram."
+        },
+        {
+          "id": "filesystem",
+          "reason": "Dépose les photos et fichiers reçus dans le dossier Upload de l'agent."
+        }
+      ],
+      "service": true,
+      "web": false,
+      "ui": false,
+      "icon": "icon.svg",
+      "updatedAt": "2026-11-03T10:54:32.991Z",
+      "locales": {
+        "en": {
+          "name": "Telegram bridge",
+          "description": "Talk to your agents from Telegram: a bot listens continuously, relays every message to the agent of your choice and sends its answer back. Commands to approve come with two buttons.",
+          "permissions": {
+            "network": "Polls the Telegram API continuously (long polling) and sends the agents' answers back; downloads received files.",
+            "agents": "Opens a conversation with the chosen agent through Allkin's socket, passes the messages on, and approves or refuses its commands from Telegram.",
+            "filesystem": "Drops received photos and files into the agent's Upload folder."
+          }
+        },
+        "es": {
+          "name": "Puente Telegram",
+          "description": "Habla con tus agentes desde Telegram: un bot escucha en continuo, reenvía cada mensaje al agente que elijas y devuelve su respuesta. Los comandos por validar llegan con dos botones.",
+          "permissions": {
+            "network": "Consulta la API de Telegram en continuo (long polling) y devuelve las respuestas de los agentes; descarga los archivos recibidos.",
+            "agents": "Abre una conversación con el agente elegido a través del socket de Allkin, le pasa los mensajes y autoriza o rechaza sus comandos desde Telegram.",
+            "filesystem": "Deposita las fotos y archivos recibidos en la carpeta Upload del agente."
+          }
+        },
+        "de": {
+          "name": "Telegram-Brücke",
+          "description": "Sprich von Telegram aus mit deinen Agenten: Ein Bot hört ständig zu, leitet jede Nachricht an den gewählten Agenten weiter und schickt seine Antwort zurück. Freizugebende Befehle kommen mit zwei Schaltflächen.",
+          "permissions": {
+            "network": "Fragt die Telegram-API fortlaufend ab (Long Polling) und schickt die Antworten der Agenten zurück; lädt empfangene Dateien herunter.",
+            "agents": "Öffnet über die Socket von Allkin eine Unterhaltung mit dem gewählten Agenten, reicht die Nachrichten weiter und gibt seine Befehle aus Telegram frei oder lehnt sie ab.",
+            "filesystem": "Legt empfangene Fotos und Dateien im Upload-Ordner des Agenten ab."
+          }
+        }
+      },
+      "files": [
+        {
+          "path": "README-DE.md",
+          "size": 2747,
+          "sha256": "645908056e86c19b9c8bbe821d81ebefcdc3431b851ae009e5aba69661c2e4a4"
+        },
+        {
+          "path": "README-EN.md",
+          "size": 2576,
+          "sha256": "471ff60a7f976689a5f1c2f4b1d916f62b07894647153601e4d263bf1921b8c4"
+        },
+        {
+          "path": "README-ES.md",
+          "size": 2717,
+          "sha256": "c15380255a436c7ee1085f8aab300fdf025f81397a9e68a43b5c28c7e896d151"
+        },
+        {
+          "path": "README.md",
+          "size": 2870,
+          "sha256": "761d4b79120e7f3b9dddfdeac6a3b15d2ef5892091a304ed129483eec06f8440"
+        },
+        {
+          "path": "bridge.mjs",
+          "size": 23084,
+          "sha256": "5d9c49e952f340681f22fc1459f3e14ba06bf600ab8fbc6016a46afade990c40"
+        },
+        {
+          "path": "icon.svg",
+          "size": 654,
+          "sha256": "212ed0f3b8bee5d286407fee64ce75e9e3efaeabb4a646597091941c3d9d1353"
+        },
+        {
+          "path": "plugin.json",
+          "size": 7591,
+          "sha256": "50381a8ff537a35307f67b9c009b1ac58363f41a53971971f4cb567f546c822e"
+        }
+      ]
+    },
+    {
+      "id": "wetty",
+      "name": "WeTTY",
+      "version": "1.0.5",
+      "description": "Terminal dans le navigateur (WeTTY) : une session SSH sur la machine, ouverte dans un onglet d'Allkin.",
+      "author": "butlerx/wetty — intégration Allkin",
+      "homepage": "https://github.com/butlerx/wetty",
+      "permissions": [
+        {
+          "id": "network",
+          "reason": "Télécharge WeTTY depuis npm au premier démarrage, écoute sur un port local et se connecte au serveur SSH."
+        },
+        {
+          "id": "exec",
+          "reason": "Lance npm pour installer WeTTY, puis ssh : le terminal exécute les commandes que vous tapez."
+        },
+        {
+          "id": "filesystem",
+          "reason": "Un terminal donne accès à tous les fichiers du compte avec lequel vous vous connectez."
+        }
+      ],
+      "service": true,
+      "web": true,
+      "ui": false,
+      "icon": "icon.svg",
+      "updatedAt": "2026-11-03T10:54:32.985Z",
+      "locales": {
+        "en": {
+          "name": "WeTTY",
+          "description": "Terminal in the browser (WeTTY): an SSH session on the machine, opened in an Allkin tab.",
+          "permissions": {
+            "network": "Downloads WeTTY from npm on first start, listens on a local port and connects to the SSH server.",
+            "exec": "Runs npm to install WeTTY, then ssh: the terminal executes the commands you type.",
+            "filesystem": "A terminal gives access to every file of the account you log in with."
+          }
+        },
+        "es": {
+          "name": "WeTTY",
+          "description": "Terminal en el navegador (WeTTY): una sesión SSH en la máquina, abierta en una pestaña de Allkin.",
+          "permissions": {
+            "network": "Descarga WeTTY desde npm en el primer inicio, escucha en un puerto local y se conecta al servidor SSH.",
+            "exec": "Ejecuta npm para instalar WeTTY y luego ssh: el terminal ejecuta los comandos que escribes.",
+            "filesystem": "Un terminal da acceso a todos los archivos de la cuenta con la que te conectas."
+          }
+        },
+        "de": {
+          "name": "WeTTY",
+          "description": "Terminal im Browser (WeTTY): eine SSH-Sitzung auf der Maschine, geöffnet in einem Tab von Allkin.",
+          "permissions": {
+            "network": "Lädt WeTTY beim ersten Start von npm herunter, lauscht auf einem lokalen Port und verbindet sich mit dem SSH-Server.",
+            "exec": "Startet npm, um WeTTY zu installieren, dann ssh: Das Terminal führt die Befehle aus, die du eingibst.",
+            "filesystem": "Ein Terminal gibt Zugriff auf alle Dateien des Kontos, mit dem du dich anmeldest."
+          }
+        }
+      },
+      "files": [
+        {
+          "path": "README-DE.md",
+          "size": 3063,
+          "sha256": "df899dacedbe69ddc4292062e2167d429fea75be63a582d96c1be8bf8be01eae"
+        },
+        {
+          "path": "README-EN.md",
+          "size": 2765,
+          "sha256": "f2a061d787c29705a7c62769a0d64e6c209b939616ced9fb5cc7068c9780d82b"
+        },
+        {
+          "path": "README-ES.md",
+          "size": 2893,
+          "sha256": "6081154692c04ccd09179b244a6139c419f1685306f69bd19a454d520c429584"
+        },
+        {
+          "path": "README.md",
+          "size": 2931,
+          "sha256": "fd5584500b8d770dc8b561f389470b321c0a5ed40c480953f1ee12e4ba3783a6"
+        },
+        {
+          "path": "icon.svg",
+          "size": 568,
+          "sha256": "b238be3199dffc909444483deed7ebdfba5db6de5519ab416970cd2970623674"
+        },
+        {
+          "path": "plugin.json",
+          "size": 7349,
+          "sha256": "2f9a3c44ff373f4ccd670c1a927955fb57cbda702a831a8bb41394f94cf322c9"
+        },
+        {
+          "path": "start.mjs",
+          "size": 4535,
+          "sha256": "447f57861dea7710be1b498d3cb633c2152d37fed6fc69568711541515cce2a4"
+        }
+      ]
+    }
+  ],
+  "skills": [],
+  "agents": [],
+  "services": []
+}
