@@ -1,6 +1,6 @@
 {
   "name": "Pont Telegram",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Parlez à vos agents depuis Telegram : plusieurs bots, chacun relié à un ou plusieurs agents, gérés depuis une page dédiée — qui peut leur écrire, quel agent répond, les conversations en cours. Les commandes à valider arrivent avec deux boutons.",
   "author": "Allkin",
   "permissions": [

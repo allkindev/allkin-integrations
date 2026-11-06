@@ -17,7 +17,7 @@
       "web": false,
       "ui": true,
       "icon": "icon.svg",
-      "updatedAt": "2026-11-06T10:35:18+01:00",
+      "updatedAt": "2026-11-06T17:44:24+01:00",
       "locales": {
         "en": {
           "name": "Browser",
@@ -479,7 +479,7 @@
     {
       "id": "telegram-bridge",
       "name": "Pont Telegram",
-      "version": "1.0.7",
+      "version": "1.0.8",
       "description": "Parlez à vos agents depuis Telegram : plusieurs bots, chacun relié à un ou plusieurs agents, gérés depuis une page dédiée — qui peut leur écrire, quel agent répond, les conversations en cours. Les commandes à valider arrivent avec deux boutons.",
       "author": "Allkin",
       "permissions": [
@@ -504,7 +504,7 @@
       "web": true,
       "ui": true,
       "icon": "icon.svg",
-      "updatedAt": "2026-11-06T10:35:18+01:00",
+      "updatedAt": "2026-11-06T17:44:24+01:00",
       "locales": {
         "en": {
           "name": "Telegram bridge",
@@ -576,17 +576,17 @@
         {
           "path": "plugin.json",
           "size": 9202,
-          "sha256": "c5b9e40547fda9009fc9136a3547e88cd2ae98b98e36ba82ca30c92a0be04a30"
+          "sha256": "41414d7e8bf6a23df82808d5d613b972c11203a79d465d4d13d695108dfe3a1c"
         },
         {
           "path": "telegram.css",
-          "size": 20337,
-          "sha256": "1b160c8f0d97a1bf7fa05a28a2cc68f51a2da432365e5bbc8c15d894d2393ddc"
+          "size": 20435,
+          "sha256": "8f1fddcfd01e7fac90e3dd3da1c82906d850944edad60647beabd648a5d548c2"
         },
         {
           "path": "telegram.js",
-          "size": 59108,
-          "sha256": "da029e9a8afb52ef753fcca9bff3c71109ad255e349322ae7c99523e3dfc578e"
+          "size": 59538,
+          "sha256": "ebd30061dbfb14e88b7b89210825b13d1025de3557c4031ab576f6d25e0e05eb"
         },
         {
           "path": "view.html",

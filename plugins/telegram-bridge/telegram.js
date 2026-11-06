@@ -406,7 +406,8 @@ function openWindow({ className = "", icon = "", title, meta = "", onClose = nul
   foot.className = "modal-foot";
   modal.append(head, body, foot);
   backdrop.appendChild(modal);
-  document.body.appendChild(backdrop);
+  // Inside the app's screen, as Allkin's own windows: its menus stack above.
+  (document.getElementById("app-screen") ?? document.body).appendChild(backdrop);
   const onKey = (event) => {
     if (event.key === "Escape") close();
   };
@@ -471,13 +472,20 @@ function button(label, icon, onClick, cls = "secondary") {
   return b;
 }
 /** A raised button that says its value, opening the menu of the values. */
+/** Opens a menu on a button. The click stops there: in a window laid on the
+ * body, it would reach the document's handler that closes the menu at once. */
+function openMenu(event, anchor, items, options) {
+  event?.stopPropagation();
+  core.menu(anchor, items, options);
+}
+
 function choiceButton(label, items, current, onPick) {
   const b = document.createElement("button");
   b.type = "button";
   b.className = "secondary tgb-choice";
   b.innerHTML = `<span>${esc(label)}</span>${iconSvg("caret-down")}`;
-  b.addEventListener("click", () =>
-    core.menu(b, items.map((item) => ({ label: item.label, active: item.value === current, onClick: () => onPick(item.value) })), { choice: true }),
+  b.addEventListener("click", (event) =>
+    openMenu(event, b, items.map((item) => ({ label: item.label, active: item.value === current, onClick: () => onPick(item.value) })), { choice: true }),
   );
   return b;
 }
@@ -581,8 +589,8 @@ function sectionAgents(bot) {
     const act = row.querySelector(".option-action");
     if (isDefault) act.insertAdjacentHTML("beforeend", `<span class="tgb-tag tgb-tag-on">${iconSvg("star")}${esc(tt("agents.default"))}</span>`);
     else if (bot.agents.length > 1 && bot.options.switchAgents) act.insertAdjacentHTML("beforeend", `<span class="tgb-cmd">/agent ${esc(id)}</span>`);
-    const more = button("", "dots-three", () =>
-      core.menu(more, [
+    const more = button("", "dots-three", (event) =>
+      openMenu(event, more, [
         { label: tt("agents.makeDefault"), iconHtml: iconSvg("star"), disabled: isDefault, onClick: () => patchBot(bot, { defaultAgent: id }) },
         { label: tt("agents.unlink"), iconHtml: iconSvg("x"), danger: true, disabled: bot.agents.length < 2, onClick: () => patchBot(bot, { agents: bot.agents.filter((a) => a !== id) }) },
       ]),
@@ -597,8 +605,8 @@ function sectionAgents(bot) {
   const others = agents().filter((a) => !bot.agents.includes(a.id));
   const link = document.createElement("div");
   link.className = "option-row tgb-add-row";
-  const linkBtn = button(tt("agents.link"), "plus", () =>
-    core.menu(linkBtn, others.map((a) => ({ label: a.name, onClick: () => patchBot(bot, { agents: [...bot.agents, a.id] }) })), { choice: true }),
+  const linkBtn = button(tt("agents.link"), "plus", (event) =>
+    openMenu(event, linkBtn, others.map((a) => ({ label: a.name, onClick: () => patchBot(bot, { agents: [...bot.agents, a.id] }) })), { choice: true }),
     "tgb-link",
   );
   linkBtn.disabled = !others.length;

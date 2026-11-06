@@ -7,6 +7,8 @@
 
 .tgb-view,
 .tgb-backdrop {
+  /* Its place in the stack: above the page and its bars, under the menus (60). */
+  z-index: 50;
   --tgb-ok: color-mix(in srgb, var(--ok, #22c55e) 72%, var(--text));
   --tgb-wait: color-mix(in srgb, var(--warn, #f59e0b) 72%, var(--text));
   --tgb-bad: color-mix(in srgb, var(--bad, #ef4444) 78%, var(--text));
