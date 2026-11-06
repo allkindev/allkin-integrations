@@ -1,6 +1,6 @@
 {
   "name": "Pont Telegram",
-  "version": "1.0.4",
+  "version": "1.0.6",
   "description": "Parlez à vos agents depuis Telegram : un bot écoute en continu, relaie chaque message à l'agent de votre choix et renvoie sa réponse. Les commandes à valider arrivent avec deux boutons.",
   "author": "Allkin",
   "permissions": [

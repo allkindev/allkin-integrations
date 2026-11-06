@@ -1,0 +1,73 @@
+<template data-slot="views">
+  <!-- The browser of an agent, live (2026-11-04, style A of mockups/browser
+       with the capsule of B): the page bar — back, forward, reload, the
+       address (open while the user has the hand), the tabs, the ⋯ menu —,
+       the frame where the screencast lands with the capsule that says who
+       has the hand, a dialog of the page or the closed browser over it, and
+       the foot: the state of the stream, Capture, Fit | Real size. Icons are
+       filled in by browser.js from data-brw-icon. -->
+  <div class="brw-view hidden" id="brw-view" data-hand="agent">
+    <header class="page-bar brw-bar">
+      <div class="brw-nav">
+        <button type="button" class="secondary" id="brw-back" data-brw-icon="arrow-left" data-i18n-title="plugin.browser.back" data-i18n-aria-label="plugin.browser.back"></button>
+        <button type="button" class="secondary" id="brw-forward" data-brw-icon="arrow-right" data-i18n-title="plugin.browser.forward" data-i18n-aria-label="plugin.browser.forward"></button>
+        <button type="button" class="secondary" id="brw-reload" data-brw-icon="arrow-clockwise" data-i18n-title="plugin.browser.reload" data-i18n-aria-label="plugin.browser.reload"></button>
+      </div>
+      <label class="brw-url" id="brw-url">
+        <span data-brw-icon="lock-simple" aria-hidden="true"></span>
+        <input type="url" id="brw-url-input" autocomplete="off" spellcheck="false" readonly data-i18n-placeholder="plugin.browser.url.placeholder" data-i18n-aria-label="plugin.browser.url.placeholder" />
+      </label>
+      <button type="button" class="secondary brw-tabs" id="brw-tabs" aria-haspopup="menu"><span data-brw-icon="browsers" aria-hidden="true"></span><span id="brw-tabs-label"></span><span class="brw-caret" data-brw-icon="caret-down" aria-hidden="true"></span></button>
+      <div class="page-bar-actions">
+        <button type="button" class="secondary" id="brw-more" data-brw-icon="dots-three" data-i18n-title="plugin.browser.more" data-i18n-aria-label="plugin.browser.more" aria-haspopup="menu"></button>
+      </div>
+    </header>
+
+    <div class="brw-frame" id="brw-frame">
+      <img class="brw-img" id="brw-img" alt="" draggable="false" />
+      <!-- The keyboard of the user, while they have the hand: what is typed
+           here goes to the page and nowhere else. -->
+      <textarea class="brw-keys" id="brw-keys" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" aria-hidden="true" tabindex="-1"></textarea>
+
+      <div class="brw-capsule" id="brw-capsule">
+        <span class="brw-avatar" id="brw-avatar"></span>
+        <span class="brw-cap-text"><b id="brw-cap-title"></b><span id="brw-cap-note"></span></span>
+        <button type="button" class="page-bar-primary" id="brw-hand"></button>
+      </div>
+
+      <div class="brw-overlay hidden" id="brw-dialog">
+        <div class="brw-card">
+          <h3 data-i18n="plugin.browser.dialog.title"></h3>
+          <p id="brw-dialog-message"></p>
+          <input type="text" id="brw-dialog-input" class="hidden" autocomplete="off" />
+          <div class="brw-card-actions">
+            <button type="button" class="secondary" id="brw-dialog-dismiss" data-i18n="plugin.browser.dialog.dismiss"></button>
+            <button type="button" id="brw-dialog-accept" data-i18n="plugin.browser.dialog.accept"></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="brw-overlay hidden" id="brw-closed">
+        <div class="brw-card">
+          <span class="brw-card-icon" data-brw-icon="globe" aria-hidden="true"></span>
+          <h3 data-i18n="plugin.browser.closed.title"></h3>
+          <p id="brw-closed-text"></p>
+          <div class="brw-card-actions">
+            <button type="button" id="brw-open" data-brw-icon="play" data-brw-label="plugin.browser.closed.open"></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-foot brw-foot">
+      <span class="page-foot-meta" id="brw-foot-meta"><span class="brw-live" aria-hidden="true"></span><span id="brw-foot-text"></span></span>
+      <div class="page-foot-actions">
+        <button type="button" class="secondary" id="brw-capture" data-brw-icon="camera" data-brw-label="plugin.browser.capture"></button>
+        <div class="seg-switch" role="group">
+          <button type="button" class="seg-switch-btn is-on" id="brw-fit" data-brw-label="plugin.browser.fit"></button>
+          <button type="button" class="seg-switch-btn" id="brw-real" data-brw-label="plugin.browser.real"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

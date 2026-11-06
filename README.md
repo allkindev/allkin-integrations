@@ -9,7 +9,7 @@ page, never by the installation.
 plugins/<id>/
 ├── plugin.json         the manifest: name, version (1.0.N), description, permissions, service, web…
 ├── README.md           for the user, with README-EN.md, README-ES.md, README-DE.md
-├── icon.svg            its icon (a Phosphor glyph, viewBox 0 0 256 256)
+├── icon.svg            its object icon (a Phosphor fill glyph on a gradient, viewBox 0 0 64 64)
 ├── locales.js          its texts in the four languages (Allkin.i18n.register)
 └── …                   its code: a service (server.mjs), a page (view.html, its script and style)
 ```

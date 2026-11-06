@@ -1,6 +1,6 @@
 {
   "name": "Pont Home Assistant",
-  "version": "1.0.4",
+  "version": "1.0.6",
   "description": "Vos agents réagissent à la maison : un événement Home Assistant (une porte qui s'ouvre, un capteur, un bouton) réveille l'agent de votre choix avec le message que vous avez écrit, et sa réponse revient en notification dans Home Assistant.",
   "author": "Allkin",
   "permissions": [

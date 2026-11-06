@@ -1,0 +1,51 @@
+{
+  "name": "Forge",
+  "version": "1.0.2",
+  "description": "Fabriquez et modifiez des intégrations, des services et des compétences avec Coder, l'agent système d'Allkin : la page de l'intégration dessinée depuis son espace de travail sans l'installer, la conversation flottante par-dessus, les six étapes de Coder, la vérification, l'installation en un bouton.",
+  "author": "Allkin",
+  "permissions": [
+    {
+      "id": "interface",
+      "reason": "Ajoute la Forge à la page d'Allkin : son onglet, son entrée dans la fenêtre Système, « Créer une intégration » et « Créer un service » sur les pages Intégrations et Services, et « Modifier dans la Forge » dans leurs menus."
+    }
+  ],
+  "ui": {
+    "apiVersion": 1,
+    "provides": [
+      "workshop"
+    ],
+    "html": [
+      "view.html"
+    ],
+    "styles": [
+      "forge.css"
+    ],
+    "scripts": [
+      "locales.js",
+      "forge.js"
+    ]
+  },
+  "locales": {
+    "en": {
+      "name": "Forge",
+      "description": "Make and modify integrations, services and competences with Coder, Allkin's system agent: the page of the integration drawn from its workspace without installing it, the conversation floating over it, Coder's six steps, the check, the installation with one button.",
+      "permissions": {
+        "interface": "Adds the Forge to the Allkin page: its tab, its entry in the System window, “Create an integration” and “Create a service” on the Integrations and Services pages, and “Modify in the Forge” in their menus."
+      }
+    },
+    "es": {
+      "name": "Forja",
+      "description": "Fabrique y modifique integraciones, servicios y competencias con Coder, el agente del sistema de Allkin: la página de la integración dibujada desde su espacio de trabajo sin instalarla, la conversación flotando encima, las seis etapas de Coder, la comprobación, la instalación con un botón.",
+      "permissions": {
+        "interface": "Añade la Forja a la página de Allkin: su pestaña, su entrada en la ventana Sistema, «Crear una integración» y «Crear un servicio» en las páginas Integraciones y Servicios, y «Modificar en la Forja» en sus menús."
+      }
+    },
+    "de": {
+      "name": "Schmiede",
+      "description": "Bauen und ändern Sie Integrationen, Dienste und Fähigkeiten mit Coder, dem Systemagenten von Allkin: die Seite der Integration aus seinem Arbeitsbereich gezeichnet, ohne sie zu installieren, die Unterhaltung schwebend darüber, die sechs Schritte von Coder, die Prüfung, die Installation mit einem Knopf.",
+      "permissions": {
+        "interface": "Fügt der Allkin-Seite die Schmiede hinzu: ihren Tab, ihren Eintrag im Systemfenster, „Integration erstellen“ und „Dienst erstellen“ auf den Seiten Integrationen und Dienste sowie „In der Schmiede ändern“ in deren Menüs."
+      }
+    }
+  }
+}

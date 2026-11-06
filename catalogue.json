@@ -2,9 +2,195 @@
   "schemaVersion": 1,
   "plugins": [
     {
+      "id": "browser",
+      "name": "Navigateur",
+      "version": "1.0.2",
+      "description": "La vue en direct du navigateur de vos agents : un onglet par agent où vous regardez la page qu'il manipule, reprenez la main d'un clic pour vous connecter à un site ou corriger, puis la lui rendez. Les outils du navigateur sont ceux d'Allkin (droit « Navigateur » de la page de l'agent) : cette intégration les montre.",
+      "author": "Allkin",
+      "permissions": [
+        {
+          "id": "interface",
+          "reason": "Ajoute l'onglet Navigateur, qui montre en direct le navigateur de chaque agent, et son entrée dans la fenêtre Système."
+        }
+      ],
+      "service": false,
+      "web": false,
+      "ui": true,
+      "icon": "icon.svg",
+      "updatedAt": "2026-11-06T09:35:17.850Z",
+      "locales": {
+        "en": {
+          "name": "Browser",
+          "description": "The live view of your agents' browser: one tab per agent where you watch the page it handles, take the hand with a click to sign in to a site or to correct, then give it back. The browser's tools are Allkin's (the right “Browser” on the agent's page): this integration shows them.",
+          "permissions": {
+            "interface": "Adds the Browser tab, which shows each agent's browser live, and its entry in the System window."
+          }
+        },
+        "es": {
+          "name": "Navegador",
+          "description": "La vista en directo del navegador de sus agentes: una pestaña por agente donde usted mira la página que manipula, toma el control con un clic para iniciar sesión en un sitio o corregir, y se lo devuelve. Las herramientas del navegador son las de Allkin (derecho «Navegador» de la página del agente): esta integración las muestra.",
+          "permissions": {
+            "interface": "Añade la pestaña Navegador, que muestra en directo el navegador de cada agente, y su entrada en la ventana Sistema."
+          }
+        },
+        "de": {
+          "name": "Browser",
+          "description": "Die Live-Ansicht des Browsers Ihrer Agenten: ein Tab pro Agent, in dem Sie die Seite sehen, die er bedient, mit einem Klick die Kontrolle übernehmen, um sich bei einer Website anzumelden oder zu korrigieren, und sie dann zurückgeben. Die Werkzeuge des Browsers sind die von Allkin (Recht „Browser“ auf der Seite des Agenten): diese Integration zeigt sie.",
+          "permissions": {
+            "interface": "Fügt den Tab Browser hinzu, der den Browser jedes Agenten live zeigt, und seinen Eintrag im Systemfenster."
+          }
+        }
+      },
+      "files": [
+        {
+          "path": "README-DE.md",
+          "size": 3398,
+          "sha256": "74db7216ecb682f1d9d5e9e830e0603a087830887218d8e9edf9b8be45885566"
+        },
+        {
+          "path": "README-EN.md",
+          "size": 2909,
+          "sha256": "7526b0cc494532fe8b06c2aa8c534b6e9ac80d60192541d49d16896d199728e0"
+        },
+        {
+          "path": "README-ES.md",
+          "size": 3138,
+          "sha256": "09ace4b58ca95a7e68ad1eff2ffd7c230440003e83fee69d4cc5cb1a7ae19b85"
+        },
+        {
+          "path": "README.md",
+          "size": 3224,
+          "sha256": "15d6229a197e0247476247e9a4c6a5398d4ee81295407706f3bb201d4a678015"
+        },
+        {
+          "path": "browser.css",
+          "size": 6062,
+          "sha256": "aea84a47d6c92c7aaaef6caad1982755277d3498bc20cef5cc862b8f78691729"
+        },
+        {
+          "path": "browser.js",
+          "size": 34879,
+          "sha256": "a01a64fb2ab3a2dcaac63354ab163e510ee64c8ef603b63ae686ec49044f2d17"
+        },
+        {
+          "path": "icon.svg",
+          "size": 909,
+          "sha256": "adc5b6c942a0886d54f641e400251740de4900f3fb2b46bd7d9a23d3854ae6b4"
+        },
+        {
+          "path": "locales.js",
+          "size": 9132,
+          "sha256": "b71f1e3deddbf2fa8d0875346709b1e5aa97159827c470861cd0e3bf45b99123"
+        },
+        {
+          "path": "plugin.json",
+          "size": 2476,
+          "sha256": "bc1dd1e1ff686e003044c96fe864b9540f17d83a9ee105bd21aba36b4024561d"
+        },
+        {
+          "path": "view.html",
+          "size": 4615,
+          "sha256": "071dbf192690f84e26470fd57c0136090e390265c5d9817300df24db02057b7b"
+        }
+      ]
+    },
+    {
+      "id": "forge",
+      "name": "Forge",
+      "version": "1.0.2",
+      "description": "Fabriquez et modifiez des intégrations, des services et des compétences avec Coder, l'agent système d'Allkin : la page de l'intégration dessinée depuis son espace de travail sans l'installer, la conversation flottante par-dessus, les six étapes de Coder, la vérification, l'installation en un bouton.",
+      "author": "Allkin",
+      "permissions": [
+        {
+          "id": "interface",
+          "reason": "Ajoute la Forge à la page d'Allkin : son onglet, son entrée dans la fenêtre Système, « Créer une intégration » et « Créer un service » sur les pages Intégrations et Services, et « Modifier dans la Forge » dans leurs menus."
+        }
+      ],
+      "service": false,
+      "web": false,
+      "ui": true,
+      "icon": "icon.svg",
+      "updatedAt": "2026-11-06T09:35:17.867Z",
+      "locales": {
+        "en": {
+          "name": "Forge",
+          "description": "Make and modify integrations, services and competences with Coder, Allkin's system agent: the page of the integration drawn from its workspace without installing it, the conversation floating over it, Coder's six steps, the check, the installation with one button.",
+          "permissions": {
+            "interface": "Adds the Forge to the Allkin page: its tab, its entry in the System window, “Create an integration” and “Create a service” on the Integrations and Services pages, and “Modify in the Forge” in their menus."
+          }
+        },
+        "es": {
+          "name": "Forja",
+          "description": "Fabrique y modifique integraciones, servicios y competencias con Coder, el agente del sistema de Allkin: la página de la integración dibujada desde su espacio de trabajo sin instalarla, la conversación flotando encima, las seis etapas de Coder, la comprobación, la instalación con un botón.",
+          "permissions": {
+            "interface": "Añade la Forja a la página de Allkin: su pestaña, su entrada en la ventana Sistema, «Crear una integración» y «Crear un servicio» en las páginas Integraciones y Servicios, y «Modificar en la Forja» en sus menús."
+          }
+        },
+        "de": {
+          "name": "Schmiede",
+          "description": "Bauen und ändern Sie Integrationen, Dienste und Fähigkeiten mit Coder, dem Systemagenten von Allkin: die Seite der Integration aus seinem Arbeitsbereich gezeichnet, ohne sie zu installieren, die Unterhaltung schwebend darüber, die sechs Schritte von Coder, die Prüfung, die Installation mit einem Knopf.",
+          "permissions": {
+            "interface": "Fügt der Allkin-Seite die Schmiede hinzu: ihren Tab, ihren Eintrag im Systemfenster, „Integration erstellen“ und „Dienst erstellen“ auf den Seiten Integrationen und Dienste sowie „In der Schmiede ändern“ in deren Menüs."
+          }
+        }
+      },
+      "files": [
+        {
+          "path": "README-DE.md",
+          "size": 3510,
+          "sha256": "df00e7cfa31dcc5a12150a829c67461bdc8cbcc4d8734723fe3e0c34976ee283"
+        },
+        {
+          "path": "README-EN.md",
+          "size": 3071,
+          "sha256": "646bba4eff564b895f78186ed61205e1f44c306f05d88087ad87c142a62f510c"
+        },
+        {
+          "path": "README-ES.md",
+          "size": 3338,
+          "sha256": "c10e472c9ec3054e4c35406e0fd50121cb54fab8765ac0ee5ca9474e6ad129ee"
+        },
+        {
+          "path": "README.md",
+          "size": 3356,
+          "sha256": "dbd5f8a2d59c2e31df1a3a2bbd7f3ba50a1757d8afc9ad433a4cc411070b9ca6"
+        },
+        {
+          "path": "forge.css",
+          "size": 19050,
+          "sha256": "566e7ddcd93a28835aabd014cb62649b34cfa40182a46d5d37d31c56ee4526ff"
+        },
+        {
+          "path": "forge.js",
+          "size": 90919,
+          "sha256": "d448e3dbaf296ab135887a7b2b3ef3d925dd579e8b3655a7a5d983a29ef0c0c8"
+        },
+        {
+          "path": "icon.svg",
+          "size": 741,
+          "sha256": "96fdd6dbfb4ed728b1a504fb271a9b366f18f7ce17e2c266e8c850de15641826"
+        },
+        {
+          "path": "locales.js",
+          "size": 48525,
+          "sha256": "941a83fd27b28ea70c77484627377aa0be24981fc482b3d9a88e32f2424a72f0"
+        },
+        {
+          "path": "plugin.json",
+          "size": 2856,
+          "sha256": "0a68e17dc7b841486ef1a9a08e16cba40af7e6002e4128367293010eee1f5f55"
+        },
+        {
+          "path": "view.html",
+          "size": 383,
+          "sha256": "6640d18dcbe26384ea4b35ff989e6f105f2fcf06f2a18ca4fbbd22b251a9c5e6"
+        }
+      ]
+    },
+    {
       "id": "home-assistant-bridge",
       "name": "Pont Home Assistant",
-      "version": "1.0.4",
+      "version": "1.0.6",
       "description": "Vos agents réagissent à la maison : un événement Home Assistant (une porte qui s'ouvre, un capteur, un bouton) réveille l'agent de votre choix avec le message que vous avez écrit, et sa réponse revient en notification dans Home Assistant.",
       "author": "Allkin",
       "permissions": [
@@ -21,7 +207,7 @@
       "web": false,
       "ui": false,
       "icon": "icon.svg",
-      "updatedAt": "2026-11-03T10:54:32.986Z",
+      "updatedAt": "2026-11-03T11:56:50+01:00",
       "locales": {
         "en": {
           "name": "Home Assistant bridge",
@@ -76,20 +262,20 @@
         },
         {
           "path": "icon.svg",
-          "size": 523,
-          "sha256": "04933aab4a0ea741a0ebabd0983a8ffc0bb73f56d89171d5327a6e906ed2d2a0"
+          "size": 858,
+          "sha256": "f2ab5f25e62f6ff973cb55dfcb1a678beb2409330aca9391ea54b063701e9b6f"
         },
         {
           "path": "plugin.json",
           "size": 8858,
-          "sha256": "f4d4244c38811fcc1e08c979ee2929f9b4012c5d2e4468b3ccee30622d7cc6dd"
+          "sha256": "5f69b32e297ee90a95507e89e36a7156b9d3f931daa6aaf991acbbc8d5493f62"
         }
       ]
     },
     {
       "id": "notes",
       "name": "Bloc-notes",
-      "version": "1.0.6",
+      "version": "1.0.9",
       "description": "Des notes rangées par dossiers, écrites dans l'éditeur markdown d'Allkin : un arbre de dossiers et de notes, recherche, épingles, corbeille, images, et « Demander à un agent » pour envoyer une note dans une conversation. Chaque note est un fichier .md du dossier partagé, que les agents lisent et écrivent aussi.",
       "author": "Allkin",
       "permissions": [
@@ -105,7 +291,7 @@
       "requires": [
         "markdown-editor"
       ],
-      "updatedAt": "2026-11-03T10:54:32.989Z",
+      "updatedAt": "2026-11-03T11:56:50+01:00",
       "locales": {
         "en": {
           "name": "Notes",
@@ -152,8 +338,8 @@
         },
         {
           "path": "icon.svg",
-          "size": 396,
-          "sha256": "713c5c984016c67a0db57b2e4152218e536ebba23ff52aa3905058b4d73dac9e"
+          "size": 999,
+          "sha256": "6d813f14408aa1b2f60a10e5872bcf74a7d92bcd394041b0e13e6d2f6c0b401a"
         },
         {
           "path": "locales.js",
@@ -162,18 +348,18 @@
         },
         {
           "path": "notes.css",
-          "size": 15960,
-          "sha256": "dab8755c2247e13f30f3cf629082b8b0ee65fb9eb3cfbea4d1d5da505be1298b"
+          "size": 16014,
+          "sha256": "edc464ca7ee9d6f2c1fad8c0cb4e20f91e3da6716c75eccd5cd538c8f5421f15"
         },
         {
           "path": "notes.js",
-          "size": 73299,
-          "sha256": "aa836499bccf7e5cc70ccaffaa02f465671121612da24a4e7e5b0fb5bf0cfd61"
+          "size": 73847,
+          "sha256": "4431f1782c0d09ad7e55321c7a493128c474b89ce67b4a2767df96ec81a95b71"
         },
         {
           "path": "plugin.json",
           "size": 2425,
-          "sha256": "910018898d04d6194e61120bbe099e4e3ad75bc6d68d63dc73926fdd31b145cb"
+          "sha256": "51a9277fea0a5562c7f417512d23c4f86e455d4b74876bfd496d06e2f2271b4b"
         },
         {
           "path": "view.html",
@@ -185,7 +371,7 @@
     {
       "id": "recordr",
       "name": "Recordr",
-      "version": "1.0.7",
+      "version": "1.0.9",
       "description": "Écoute le micro, transcrit ce qui se dit au fil de la parole et distingue les interlocuteurs. La reconnaissance est faite par le service audio que vous choisissez.",
       "author": "Allkin",
       "permissions": [
@@ -198,7 +384,7 @@
       "web": true,
       "ui": false,
       "icon": "icon.svg",
-      "updatedAt": "2026-11-03T10:54:32.991Z",
+      "updatedAt": "2026-11-03T11:56:50+01:00",
       "locales": {
         "en": {
           "name": "Recordr",
@@ -245,13 +431,13 @@
         },
         {
           "path": "icon.svg",
-          "size": 500,
-          "sha256": "0083e408f3934c2da9c1b61ff4dd82bad407d099c715a1c3199cef9b598bd1e4"
+          "size": 921,
+          "sha256": "998ad1f3720eb2053db5cf6193d376aae1eefd8a65fa35f007559f533a30a261"
         },
         {
           "path": "plugin.json",
           "size": 5946,
-          "sha256": "39f48c92765a014b338889ef232a758ecebed8900e5c8325c00254aa2e7dcbb7"
+          "sha256": "36fad2d8c3970f2ed330bd26a65c121830e2ead8ec8cc325ffd0f7e5330c34a9"
         },
         {
           "path": "server.mjs",
@@ -293,7 +479,7 @@
     {
       "id": "telegram-bridge",
       "name": "Pont Telegram",
-      "version": "1.0.4",
+      "version": "1.0.6",
       "description": "Parlez à vos agents depuis Telegram : un bot écoute en continu, relaie chaque message à l'agent de votre choix et renvoie sa réponse. Les commandes à valider arrivent avec deux boutons.",
       "author": "Allkin",
       "permissions": [
@@ -314,7 +500,7 @@
       "web": false,
       "ui": false,
       "icon": "icon.svg",
-      "updatedAt": "2026-11-03T10:54:32.991Z",
+      "updatedAt": "2026-11-03T11:56:50+01:00",
       "locales": {
         "en": {
           "name": "Telegram bridge",
@@ -372,20 +558,20 @@
         },
         {
           "path": "icon.svg",
-          "size": 654,
-          "sha256": "212ed0f3b8bee5d286407fee64ce75e9e3efaeabb4a646597091941c3d9d1353"
+          "size": 699,
+          "sha256": "fb52d31e2ebcbdb3f8dd3336f885fc29991fbf6eec6e94509801dc43f70acd55"
         },
         {
           "path": "plugin.json",
           "size": 7591,
-          "sha256": "50381a8ff537a35307f67b9c009b1ac58363f41a53971971f4cb567f546c822e"
+          "sha256": "106a12adfc14f0224954ced17c40c2af821455a3ca97d7aacd1e155352e28fc9"
         }
       ]
     },
     {
       "id": "wetty",
       "name": "WeTTY",
-      "version": "1.0.5",
+      "version": "1.0.7",
       "description": "Terminal dans le navigateur (WeTTY) : une session SSH sur la machine, ouverte dans un onglet d'Allkin.",
       "author": "butlerx/wetty — intégration Allkin",
       "homepage": "https://github.com/butlerx/wetty",
@@ -407,7 +593,7 @@
       "web": true,
       "ui": false,
       "icon": "icon.svg",
-      "updatedAt": "2026-11-03T10:54:32.985Z",
+      "updatedAt": "2026-11-03T11:56:50+01:00",
       "locales": {
         "en": {
           "name": "WeTTY",
@@ -460,13 +646,13 @@
         },
         {
           "path": "icon.svg",
-          "size": 568,
-          "sha256": "b238be3199dffc909444483deed7ebdfba5db6de5519ab416970cd2970623674"
+          "size": 986,
+          "sha256": "5ef09d448020325581f3979c9527257f4c43bc7d9bfbb7dd3c6c4bb794b5ea9c"
         },
         {
           "path": "plugin.json",
           "size": 7349,
-          "sha256": "2f9a3c44ff373f4ccd670c1a927955fb57cbda702a831a8bb41394f94cf322c9"
+          "sha256": "75f1bb7170d8c40a47b6029d332316870e002919f3cd6eac275e75812e390c50"
         },
         {
           "path": "start.mjs",

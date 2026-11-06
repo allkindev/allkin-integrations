@@ -148,10 +148,17 @@ Nécessaire pour que `import` fonctionne dans un `.js`.
 ### `icon.svg`
 
 ```svg
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 01-8 8H7l-4 3V12a8 8 0 018-8h2a8 8 0 018 8z"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><defs><linearGradient id="nav-ico-bonjour-b" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7c3aed"/><stop offset="1" stop-color="#4c1d95"/></linearGradient><linearGradient id="nav-ico-bonjour-f" x1="0" y1="0" x2=".4" y2="1"><stop offset="0" stop-color="#d0c4fd"/><stop offset="1" stop-color="#7c3aed"/></linearGradient></defs><g transform="translate(32 32) scale(.9) translate(-32 -32)"><path d="M10 22 a4 4 0 0 1 4 -4 h9 a7 7 0 1 1 14 0 h9 a4 4 0 0 1 4 4 v9 a7 7 0 1 1 0 14 v9 a4 4 0 0 1 -4 4 h-32 a4 4 0 0 1 -4 -4 z" fill="url(#nav-ico-bonjour-b)"/><rect x="16" y="24" width="14" height="14" rx="3" fill="url(#nav-ico-bonjour-f)"/></g></svg>
 ```
 
-Un tracé sans fond, 24×24 : Allkin le pose sur une pastille teintée.
+Une icône-objet dans le style « Aplats superposés » d'Allkin, comme celles de ses pages (plus un
+glyphe Phosphor depuis le 04/11/2026) : l'objet dessiné en pièces plates dans un cadre
+`0 0 64 64`, chacune dans une teinte d'**une seule famille** — le fond en dégradé moyen → profond,
+l'avant en dégradé clair → moyen, les petites pièces dans le ton profond, les découpes dans le ton
+clair mêlé de blanc —, sans contour, sans blanc ni noir. Les dessins d'Allkin
+(`web/object-icons.js`) sont les modèles à suivre. Allkin l'affiche telle quelle,
+dans ses couleurs, avec l'ombre de ses icônes-objets. Choisissez une famille qui dit ce qu'est
+l'intégration : un carnet jaune, un micro rouge, un dossier bleu ciel.
 
 ### `README.md`
 

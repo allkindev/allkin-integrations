@@ -1,0 +1,198 @@
+/* ===========================================================================
+   The Forge — the integration's stylesheet (style D « Aperçu d'abord » of
+   Allkin's mockups, the owner's choice; a page of Allkin from 2026-10-29 to
+   2026-11-03, an integration since).
+   The page of a project: the band (the project, the tools of the preview,
+   the actions), the six steps of Coder under it, then the canvas — the
+   preview of the integration's page, full width, in an isolated frame; a
+   phone-sized frame on demand; the sheet of a project without a page — and
+   the conversation with Coder floating over it, at the right: the chat's
+   own panels, lent by Allkin while the tab is shown. On a phone the
+   conversation is a sheet at the bottom, folded to a strip. The start
+   screen: the type as cards, the wish from edge to edge, the starting
+   points as chips. Every class is prefixed .forge-; the tokens are Allkin's.
+   =========================================================================== */
+.forge-view { display: flex; flex-direction: column; padding: 0; overflow: hidden; position: relative; container-type: inline-size; --edit-gutter: 0px; }
+.forge-view.hidden { display: none; }
+.forge-view .page-bar.forge-bar { margin: 0; padding: 0 var(--sp-4); flex: none; display: flex; align-items: center; gap: var(--sp-3); }
+.forge-bar-text { display: flex; flex-direction: column; min-width: 0; flex: 0 1 auto; line-height: 1.2; }
+.forge-bar-text .page-bar-text { font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.forge-bar-text .page-bar-meta { font-size: var(--text-2xs); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.forge-bar .page-bar-actions { margin-left: auto; display: flex; gap: var(--sp-2); flex: none; }
+.forge-bar button { display: inline-flex; align-items: center; gap: 6px; height: var(--page-ctl-h); white-space: nowrap; }
+.forge-bar button:not(:has(.page-bar-label)):not(.seg-switch-btn) { width: var(--page-ctl-h); padding: 0; justify-content: center; }
+.forge-bar button.has-errors { color: var(--bad, #ef4444); }
+.forge-bar button.has-warnings { color: var(--warn, #f59e0b); }
+.forge-tools { display: flex; align-items: center; gap: var(--sp-2); margin: 0 auto; }
+.forge-view button.seg-switch-btn { width: auto; flex: 0 0 auto; white-space: nowrap; }
+.forge-view .seg-switch:has(button.seg-switch-btn > svg:only-child) button.seg-switch-btn { width: calc(var(--page-ctl-h) + 2px); }
+.forge-start-switch { margin: 0 auto; }
+.forge-start-switch .seg-switch-btn, .forge-start-switch-phone .seg-switch-btn { padding: 0 14px; }
+.forge-start-switch-phone { display: none; }
+button.forge-projects-btn svg { order: 0; width: 16px; height: 16px; }
+.forge-loading { padding: var(--sp-5); }
+.forge-gap { flex: 1; }
+
+/* The six steps, a strip under the band. */
+.forge-steps { display: flex; align-items: center; gap: 0; height: 30px; padding: 0 var(--sp-4); background: var(--bg-alt); border-bottom: 1px solid var(--border); flex: none; overflow: hidden; }
+.forge-step { display: inline-flex; align-items: center; gap: 6px; font-size: var(--text-xs); font-weight: 600; color: var(--text-faint); white-space: nowrap; }
+.forge-step + .forge-step::before { content: ""; width: 16px; height: 1px; margin: 0 8px; background: var(--border); }
+.forge-step i { display: inline-grid; place-items: center; width: 14px; height: 14px; border-radius: 50%; border: 1.5px solid var(--border); box-sizing: border-box; }
+.forge-step i svg { width: 9px; height: 9px; color: #fff; }
+.forge-step.is-done { color: var(--text-dim); }
+.forge-step.is-done i { background: var(--ok, #22c55e); border-color: transparent; }
+.forge-step.is-now { color: var(--text); }
+.forge-step.is-now i { background: var(--grad-on); border-color: transparent; box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 22%, transparent); }
+.forge-step.is-skipped { text-decoration: line-through; text-decoration-color: color-mix(in srgb, var(--text-faint) 60%, transparent); }
+.forge-step.is-skipped i { border-style: dashed; }
+.forge-step.is-skipped i svg { color: var(--text-faint); }
+.forge-steps-say { margin-left: auto; font-size: var(--text-xs); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding-left: var(--sp-3); }
+
+/* The canvas: the preview in its frame, or the sheet. */
+.forge-canvas { flex: 1; min-height: 0; position: relative; display: flex; flex-direction: column; background: var(--bg); overflow: auto; }
+.forge-frame { flex: 1; min-height: 0; display: flex; flex-direction: column; }
+.forge-preview-frame { flex: 1; width: 100%; min-height: 0; border: 0; background: var(--bg); display: block; }
+.forge-canvas.is-tel { align-items: center; padding: var(--sp-4) 0; background: var(--bg-alt); }
+.forge-canvas.is-tel .forge-frame { width: 390px; max-width: 100%; flex: 1; border: 6px solid #0b1220; border-radius: 22px; overflow: hidden; background: var(--bg); box-shadow: var(--shadow-md); }
+.forge-preview-note { position: absolute; left: var(--sp-4); bottom: var(--sp-3); font-size: var(--text-2xs); padding: 2px 8px; border-radius: 999px; background: color-mix(in srgb, var(--bg-raised) 80%, transparent); border: 1px solid var(--border); pointer-events: none; }
+.forge-canvas.is-designating .forge-frame { outline: 2px solid var(--accent); outline-offset: -2px; }
+.forge-web-card { margin: auto; max-width: 30rem; }
+
+/* The sheet of a project without a page (a service, a competence). */
+.forge-fiche { width: 100%; max-width: 48rem; margin: 0 auto; padding: var(--sp-5) var(--sp-5) 9rem; box-sizing: border-box; display: flex; flex-direction: column; gap: var(--sp-4); }
+.forge-fiche-head { display: flex; gap: var(--sp-4); align-items: flex-start; }
+.forge-bigicon { flex: none; display: inline-grid; place-items: center; width: 64px; height: 64px; border-radius: 16px; background: var(--grad-on); color: #fff; box-shadow: var(--shadow-sm); }
+.forge-bigicon svg { width: 34px; height: 34px; }
+.forge-fiche-id { min-width: 0; }
+.forge-fiche-id > b { font-size: var(--text-lg); display: block; }
+.forge-fiche-id > .dim { font-size: var(--text-xs); }
+.forge-fiche-id p { margin: var(--sp-1) 0 0; color: var(--text-dim); font-size: var(--text-sm); }
+.forge-fiche-sec { border: 1px solid var(--border); border-radius: var(--card-radius); background: var(--bg-raised); box-shadow: var(--shadow-sm); overflow: hidden; }
+.forge-fiche-sec h4 { margin: 0; padding: var(--sp-3) var(--sp-4); font-size: var(--text-xs); font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--text-faint); border-bottom: 1px solid var(--border); }
+.forge-row .option-action { color: var(--text-dim); font-size: var(--text-sm); text-align: right; max-width: 60%; }
+.forge-fiche-note { margin: 0; font-size: var(--text-xs); }
+.forge-parts { display: inline-flex; flex-wrap: wrap; gap: 6px; justify-content: flex-end; }
+.forge-part { display: inline-flex; align-items: center; gap: 4px; padding: 2px 8px; border-radius: 999px; font-size: var(--text-2xs); font-weight: 600; color: var(--text-faint); background: color-mix(in srgb, var(--text) 6%, transparent); }
+.forge-part svg { width: 12px; height: 12px; }
+.forge-part.on { color: var(--ok, #22c55e); background: color-mix(in srgb, var(--ok, #22c55e) 12%, transparent); }
+.forge-part.off { color: var(--warn, #f59e0b); background: color-mix(in srgb, var(--warn, #f59e0b) 14%, transparent); }
+
+/* The floating conversation. */
+.forge-float { position: absolute; right: var(--sp-4); bottom: var(--sp-4); width: min(27rem, calc(100% - 2 * var(--sp-4))); height: min(42rem, calc(100% - 2 * var(--sp-4) - 30px)); display: flex; flex-direction: column; border: 1px solid var(--border); border-radius: var(--card-radius); background: var(--bg-raised); box-shadow: var(--shadow-md); overflow: hidden; z-index: 5; }
+.forge-float.is-collapsed { height: auto; width: min(18rem, calc(100% - 2 * var(--sp-4))); }
+.forge-float.is-collapsed .forge-float-body, .forge-float.is-collapsed .forge-about { display: none; }
+.forge-float.is-collapsed .forge-float-head { cursor: pointer; border-bottom: 0; }
+.forge-float-head { display: flex; align-items: center; gap: var(--sp-2); height: var(--bar-h); padding: 0 var(--sp-2) 0 var(--sp-3); border-bottom: 1px solid var(--border); background: var(--bg-alt); flex: none; font-size: var(--text-sm); }
+.forge-float-head b { font-weight: 600; }
+.forge-float-meta { font-size: var(--text-xs); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.forge-float-avatar { width: 24px; height: 24px; border-radius: 50%; font-size: var(--text-2xs); }
+.forge-float-avatar img { width: 100%; height: 100%; object-fit: cover; }
+.forge-float-head button { height: 24px; width: 24px; padding: 0; display: inline-grid; place-items: center; }
+.forge-float-body { flex: 1; min-height: 0; display: flex; flex-direction: column; position: relative; }
+.forge-float-body .chat-messages-wrap { flex: 1; min-height: 0; }
+.forge-float-body .chat-messages { padding: var(--sp-3) var(--sp-3) 9rem; }
+.forge-float-body .chat-input-bar { padding-left: var(--sp-3); padding-right: var(--sp-3); }
+.forge-no-session { display: flex; flex-direction: column; align-items: center; gap: var(--sp-3); padding: var(--sp-5); text-align: center; }
+.forge-no-session p { margin: 0; font-size: var(--text-sm); }
+.forge-about { display: flex; align-items: center; gap: 8px; padding: 6px var(--sp-3); background: color-mix(in srgb, var(--accent) 10%, transparent); border-bottom: 1px solid var(--border); font-size: var(--text-xs); color: var(--text); }
+.forge-about svg { width: 14px; height: 14px; color: var(--accent); flex: none; }
+.forge-about-text { flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.forge-about-close { height: 20px; width: 20px; padding: 0; display: inline-grid; place-items: center; }
+
+/* The start screen. */
+.forge-scroll { flex: 1; min-height: 0; overflow-y: auto; }
+.forge-start { display: flex; flex-direction: column; gap: var(--sp-5); padding: var(--sp-5) 0 var(--sp-6); }
+.forge-start-col { width: 100%; max-width: 48rem; margin: 0 auto; padding: 0 var(--sp-5); box-sizing: border-box; }
+.forge-start h4 { margin: 0 0 var(--sp-3); font-size: var(--text-lg); font-weight: 600; }
+.forge-optional { font-size: var(--text-xs); font-weight: 500; }
+.forge-types { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--sp-3); }
+button.forge-type { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; height: auto; padding: var(--sp-3) var(--sp-4); border: 1px solid var(--border); border-radius: var(--card-radius); background: var(--bg-raised); box-shadow: var(--shadow-sm); font-size: var(--text-sm); color: var(--text-dim); text-align: left; }
+button.forge-type svg { width: 22px; height: 22px; color: var(--accent); margin-bottom: 4px; }
+button.forge-type b { color: var(--text); font-size: var(--text-md); }
+button.forge-type.is-on { box-shadow: 0 0 0 2px var(--accent), var(--shadow-sm); }
+.forge-wish { position: relative; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); background: var(--bg); }
+.forge-wish-input { display: block; width: 100%; min-height: 9rem; padding: var(--sp-4) max(var(--sp-5), calc(50% - 24rem + var(--sp-5))) var(--sp-5); border: 0; border-radius: 0; background: transparent; font-size: var(--text-lg); line-height: 1.5; resize: vertical; box-sizing: border-box; box-shadow: none; }
+.forge-wish-input:focus { outline: none; box-shadow: inset 0 0 0 2px var(--focus-border); }
+.forge-wish-count { position: absolute; right: var(--sp-5); bottom: var(--sp-2); font-size: var(--text-2xs); color: var(--text-faint); pointer-events: none; }
+.forge-wish .field-error { margin: 0 var(--sp-5) var(--sp-2); }
+.forge-starts { display: flex; flex-wrap: wrap; gap: var(--sp-2); }
+button.forge-start-chip { display: inline-flex; align-items: center; gap: 6px; height: var(--page-ctl-h); padding: 0 12px; border: 1px solid var(--border); border-radius: 999px; background: var(--bg-raised); box-shadow: var(--shadow-sm); font-size: var(--text-sm); font-weight: 500; color: var(--text); }
+button.forge-start-chip svg { width: 16px; height: 16px; }
+button.forge-start-chip.is-on { background: var(--grad-on); color: #fff; border-color: transparent; }
+.forge-start-extra { margin-top: var(--sp-3); display: flex; flex-direction: column; gap: var(--sp-3); }
+.forge-extra-row { display: flex; align-items: center; gap: var(--sp-3); }
+.forge-extra-label { flex: none; font-size: var(--text-sm); font-weight: 600; }
+.forge-extra-row input { flex: 1; min-width: 0; }
+.forge-soft { padding: var(--sp-4); border: 1px solid var(--border); border-radius: var(--card-radius); background: var(--bg-raised); box-shadow: var(--shadow-sm); }
+.forge-soft-head { display: flex; align-items: center; gap: 8px; margin-bottom: var(--sp-3); font-size: var(--text-md); }
+.forge-soft-head svg { width: 18px; height: 18px; color: var(--accent); }
+.forge-soft-head .dim { font-size: var(--text-xs); }
+.forge-will { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--sp-2); }
+.forge-will li { display: flex; gap: 10px; align-items: flex-start; font-size: var(--text-sm); color: var(--text-dim); line-height: 1.5; }
+.forge-will li svg { flex: none; width: 18px; height: 18px; margin-top: 2px; color: var(--accent); }
+.forge-will b { color: var(--text); }
+.forge-start-note { margin: var(--sp-4) 0 0; max-width: 44rem; font-size: var(--text-sm); }
+.forge-chooser { display: flex; align-items: center; gap: var(--sp-3); flex-wrap: wrap; margin-bottom: var(--sp-3); }
+.forge-chooser .dim { font-size: var(--text-xs); }
+button.forge-choice-btn { display: inline-flex; align-items: center; gap: 6px; height: var(--page-ctl-h); font-weight: 600; }
+button.forge-choice-btn svg { order: 2; width: 14px; height: 14px; }
+.forge-chosen { display: flex; gap: var(--sp-4); padding: var(--sp-4); border: 1px solid var(--border); border-radius: var(--card-radius); background: var(--bg-raised); box-shadow: var(--shadow-sm); }
+.forge-chosen-id { min-width: 0; }
+.forge-chosen-id > b { font-size: var(--text-lg); display: block; }
+.forge-chosen-id > .dim { font-size: var(--text-xs); }
+.forge-chosen-id dl { margin: var(--sp-2) 0 0; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 2px var(--sp-3); font-size: var(--text-xs); }
+.forge-chosen-id dt { color: var(--text-faint); font-weight: 600; }
+.forge-chosen-id dd { margin: 0; color: var(--text-dim); }
+.forge-foot.page-foot { padding: 0 var(--sp-4); }
+.forge-foot .page-foot-actions button { display: inline-flex; align-items: center; gap: 6px; height: var(--page-ctl-h); }
+
+/* The windows: the files, the check. */
+.forge-files { display: flex; flex-direction: column; border: 1px solid var(--border); border-radius: var(--card-radius); background: var(--bg); overflow: hidden; }
+button.forge-file { display: flex; align-items: center; gap: 10px; height: 36px; padding: 0 var(--sp-4); border: 0; border-bottom: 1px solid color-mix(in srgb, var(--border) 60%, transparent); border-radius: 0; background: none; box-shadow: none; font-size: var(--text-sm); text-align: left; color: var(--text); }
+button.forge-file:last-child { border-bottom: 0; }
+button.forge-file:hover { background: color-mix(in srgb, var(--text) 4%, transparent); }
+button.forge-file svg { width: 16px; height: 16px; color: var(--text-faint); flex: none; }
+.forge-file-name { flex: 1; min-width: 0; font-family: var(--font-mono); font-size: var(--text-xs); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+button.forge-file.is-changed .forge-file-name { font-weight: 600; }
+.forge-file-pill { padding: 1px 8px; border-radius: 999px; font-size: var(--text-2xs); font-weight: 600; background: color-mix(in srgb, var(--accent) 12%, transparent); color: var(--accent); }
+.forge-file-size, .forge-file-date { font-size: var(--text-xs); white-space: nowrap; }
+.forge-issues { display: flex; flex-direction: column; gap: var(--sp-2); }
+.forge-issue { display: flex; align-items: center; gap: 10px; padding: var(--sp-2) var(--sp-3); border: 1px solid var(--border); border-radius: var(--ctl-radius); background: var(--bg-raised); font-size: var(--text-sm); }
+.forge-issue i { width: 8px; height: 8px; border-radius: 50%; flex: none; background: var(--warn, #f59e0b); }
+.forge-issue.is-error i { background: var(--bad, #ef4444); }
+.forge-issue-text { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.forge-issue-text b { font-family: var(--font-mono); font-size: var(--text-xs); font-weight: 600; }
+.forge-issue-level { font-size: var(--text-xs); white-space: nowrap; }
+.forge-issue button { height: var(--ctl-h); display: inline-flex; align-items: center; gap: 6px; font-size: var(--text-xs); white-space: nowrap; }
+.forge-window .modal-foot-aside { font-size: var(--text-xs); }
+.forge-window .modal-foot button { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; flex: none; }
+
+@media (max-width: 720px) {
+  .forge-bar .page-bar-actions button:not(.page-bar-primary):not(:last-child) { display: none; }
+  .forge-bar-text .page-bar-meta { display: none; }
+  .forge-tools { display: none; }
+  .forge-view .forge-bar .forge-start-switch { display: none; }
+  .forge-start-switch-phone { display: inline-flex; align-self: center; margin: 0 var(--sp-3); }
+  .forge-start-switch-phone .seg-switch-btn { width: auto; padding: 0 18px; }
+  .forge-steps { gap: 3px; height: 8px; padding: 0 var(--sp-3); background: var(--band-bg); }
+  .forge-step { flex: 1; height: 3px; border-radius: 2px; background: var(--border); overflow: hidden; }
+  .forge-step i, .forge-step span, .forge-step::before { display: none; }
+  .forge-step.is-done { background: var(--ok, #22c55e); }
+  .forge-step.is-now { background: var(--grad-on); }
+  .forge-step.is-skipped { background: repeating-linear-gradient(90deg, var(--border) 0 3px, transparent 3px 6px); }
+  .forge-steps-say { display: none; }
+  .forge-canvas.is-tel { padding: 0; background: var(--bg); align-items: stretch; }
+  .forge-canvas.is-tel .forge-frame { width: auto; border: 0; border-radius: 0; box-shadow: none; }
+  .forge-float { left: 0; right: 0; bottom: 0; width: auto; height: 62%; border-radius: var(--card-radius) var(--card-radius) 0 0; border-bottom: 0; }
+  .forge-float.is-collapsed { width: auto; }
+  .forge-float-head::before { content: ""; position: absolute; left: 50%; top: 4px; width: 36px; height: 4px; margin-left: -18px; border-radius: 2px; background: color-mix(in srgb, var(--text) 22%, transparent); }
+  .forge-float-head { position: relative; }
+  .forge-types { grid-template-columns: minmax(0, 1fr); }
+  button.forge-type { flex-direction: row; align-items: center; gap: 10px; }
+  button.forge-type svg { margin: 0; }
+  button.forge-type span { display: none; }
+  .forge-fiche { padding-bottom: 4rem; }
+  .forge-row .option-action { max-width: none; text-align: left; }
+  .forge-foot .page-foot-meta { display: none; }
+}
+

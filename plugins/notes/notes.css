@@ -43,6 +43,7 @@
 .nt-view.is-resizing .nt-note { pointer-events: none; }
 .nt-icon { display: inline-grid; place-items: center; flex-shrink: 0; }
 .nt-icon svg { width: 16px; height: 16px; }
+.nt-icon.is-object svg { width: 18px; height: 18px; }
 
 /* ---- The column: groups and rows ----------------------------------------- */
 .nt-group { display: flex; align-items: center; gap: 2px; flex-shrink: 0; margin: var(--sp-3) 0 var(--sp-1); padding: 0 var(--sp-2) 0 var(--sp-4); font-size: var(--text-2xs); font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-faint); }

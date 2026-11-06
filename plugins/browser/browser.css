@@ -1,0 +1,85 @@
+/* Browser (2026-11-04): the live view of an agent's browser — style A of
+   mockups/browser with the capsule of B. Allkin's tokens only; every class
+   is prefixed .brw-. */
+
+.brw-view { position: relative; display: flex; flex-direction: column; min-height: 0; overflow: hidden; }
+.brw-view svg { width: 16px; height: 16px; flex: none; }
+.brw-bar { gap: var(--sp-2); }
+.brw-nav { display: inline-flex; gap: 4px; flex: none; }
+.brw-nav button { width: var(--page-ctl-h); padding: 0; }
+.brw-view[data-hand="agent"] .brw-nav button { opacity: 0.55; }
+
+/* The address: a field of the forms, read while the agent drives, open
+   while the user has the hand (the focus ring). */
+.brw-url {
+  display: inline-flex; align-items: center; gap: 8px; flex: 1 1 auto; min-width: 0; max-width: 42rem;
+  height: var(--page-ctl-h); padding: 0 12px;
+  border: 1px solid var(--border); border-radius: var(--ctl-radius);
+  background: var(--bg); color: var(--text); font-size: var(--text-sm);
+}
+.brw-url > span svg { width: 14px; height: 14px; color: var(--text-faint); }
+.brw-url input { flex: 1; min-width: 0; height: 100%; margin: 0; padding: 0; border: 0; background: transparent; color: inherit; font: inherit; box-shadow: none; }
+.brw-url input:focus { outline: none; }
+.brw-url:focus-within { border-color: var(--focus-border); box-shadow: 0 0 0 3px var(--focus-ring); }
+.brw-view[data-hand="agent"] .brw-url { color: var(--text-dim); }
+.brw-tabs { flex: none; }
+.brw-tabs .brw-caret svg { width: 12px; height: 12px; opacity: 0.7; }
+
+/* The frame: the room where the page's image lands, the page fitted to it
+   or at its real size (then it scrolls). A ring says the agent drives. */
+.brw-frame { position: relative; flex: 1; min-height: 0; overflow: auto; background: var(--bg-alt); overscroll-behavior: contain; }
+.brw-img { display: block; width: 100%; max-width: 1280px; margin: 0 auto; background: #fff; box-shadow: 0 0 0 1px var(--border); user-select: none; -webkit-user-drag: none; }
+.brw-view.is-real .brw-img { width: 1280px; max-width: none; }
+.brw-view[data-hand="user"] .brw-img { cursor: default; }
+.brw-view[data-hand="agent"] .brw-frame::after { content: ""; position: sticky; display: block; inset: 0; pointer-events: none; }
+.brw-view[data-hand="agent"] .brw-img { box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 55%, transparent); }
+.brw-img:not([src]) { min-height: 240px; }
+
+/* The keyboard of the user: out of sight, never out of focus while they have the hand. */
+.brw-keys { position: absolute; left: -9999px; top: 0; width: 1px; height: 1px; opacity: 0; resize: none; }
+
+/* The capsule: who has the hand, and the button that changes it. */
+.brw-capsule {
+  position: absolute; left: 50%; bottom: 18px; z-index: 5; transform: translateX(-50%);
+  display: inline-flex; align-items: center; gap: 12px;
+  max-width: calc(100% - 2 * var(--sp-3));
+  height: 52px; padding: 0 8px 0 10px;
+  border: 1px solid var(--border); border-radius: 999px;
+  background: var(--bg); color: var(--text);
+  box-shadow: 0 14px 36px rgba(15, 23, 42, 0.22), 0 3px 8px rgba(15, 23, 42, 0.1);
+  white-space: nowrap;
+}
+:root[data-theme="dark"] .brw-capsule { box-shadow: 0 14px 36px rgba(0, 0, 0, 0.5), 0 3px 8px rgba(0, 0, 0, 0.3); }
+.brw-avatar { position: relative; flex: none; display: inline-grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; overflow: hidden; background: var(--bg-alt); font-size: var(--text-sm); font-weight: 700; }
+.brw-avatar img { width: 100%; height: 100%; object-fit: cover; }
+.brw-view[data-hand="agent"] .brw-avatar { box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--accent); }
+.brw-cap-text { display: flex; flex-direction: column; min-width: 0; line-height: 1.2; }
+.brw-cap-text b { font-size: var(--text-sm); font-weight: 600; overflow: hidden; text-overflow: ellipsis; }
+.brw-cap-text span { font-size: var(--text-xs); color: var(--text-dim); overflow: hidden; text-overflow: ellipsis; }
+.brw-capsule button { height: 36px; flex: none; }
+
+/* A dialog of the page, or the browser closed: a card over the frame. */
+.brw-overlay { position: absolute; inset: 0; z-index: 6; display: grid; place-items: center; background: color-mix(in srgb, var(--bg) 55%, transparent); }
+.brw-card { width: min(420px, calc(100% - 2 * var(--sp-4))); padding: var(--sp-4); border: 1px solid var(--border); border-radius: var(--card-radius); background: var(--bg); box-shadow: 0 18px 50px rgba(15, 23, 42, 0.22); text-align: center; }
+.brw-card h3 { margin: 0 0 var(--sp-2); font-size: var(--text-lg); font-weight: 600; }
+.brw-card p { margin: 0 0 var(--sp-3); color: var(--text-dim); font-size: var(--text-sm); white-space: pre-wrap; overflow-wrap: anywhere; }
+.brw-card input { width: 100%; margin-bottom: var(--sp-3); }
+.brw-card-icon { display: inline-grid; place-items: center; width: 44px; height: 44px; margin-bottom: var(--sp-2); border-radius: 50%; background: var(--bg-alt); color: var(--text-dim); }
+.brw-card-icon svg { width: 22px; height: 22px; }
+.brw-card-actions { display: flex; justify-content: center; gap: var(--sp-2); }
+
+/* The foot: the state of the stream, the tools of the picture. */
+.brw-foot .page-foot-meta { display: inline-flex; align-items: center; gap: 6px; }
+.brw-live { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #16a34a; box-shadow: 0 0 0 3px color-mix(in srgb, #16a34a 25%, transparent); }
+.brw-view[data-hand="user"] .brw-live { background: var(--accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 25%, transparent); }
+.brw-view.is-off .brw-live { background: var(--text-faint); box-shadow: none; }
+
+/* A phone: a button with an icon loses its label, the capsule tightens. */
+@media (max-width: 720px) {
+  .brw-bar button > span:not([data-brw-icon]):not(.brw-caret) { display: none; }
+  .brw-tabs { width: var(--page-ctl-h); padding: 0; justify-content: center; }
+  .brw-tabs .brw-caret { display: none; }
+  .brw-capsule { bottom: 12px; gap: 8px; }
+  .brw-capsule .brw-cap-text span { display: none; }
+  #brw-capture > span { display: none; }
+}

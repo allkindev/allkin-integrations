@@ -123,10 +123,20 @@ function h(tag, className = "", text = null) {
   return node;
 }
 
+/* The things of the notebook — a folder, a note, the notebook itself — wear
+   Allkin's object icons (style B, 2026-11-04) when the core draws them; the
+   rest of the icons are actions, light glyphs. */
+const OBJECT_ICONS = {
+  folder: ["folder", "yellow"], "folder-open": ["folder", "yellow"], notebook: ["notebook", "yellow"],
+  note: ["page", "amber"], "note-blank": ["page", "slate"],
+};
+
 function iconNode(name, className = "nt-icon") {
   const node = h("span", className);
   node.setAttribute("aria-hidden", "true");
-  node.innerHTML = iconSvg(name);
+  const object = core.objectIcon && OBJECT_ICONS[name];
+  node.classList.toggle("is-object", Boolean(object));
+  node.innerHTML = object ? core.objectIcon(...object) : iconSvg(name);
   return node;
 }
 

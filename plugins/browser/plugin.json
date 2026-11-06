@@ -1,0 +1,42 @@
+{
+  "name": "Navigateur",
+  "version": "1.0.2",
+  "description": "La vue en direct du navigateur de vos agents : un onglet par agent où vous regardez la page qu'il manipule, reprenez la main d'un clic pour vous connecter à un site ou corriger, puis la lui rendez. Les outils du navigateur sont ceux d'Allkin (droit « Navigateur » de la page de l'agent) : cette intégration les montre.",
+  "author": "Allkin",
+  "permissions": [
+    {
+      "id": "interface",
+      "reason": "Ajoute l'onglet Navigateur, qui montre en direct le navigateur de chaque agent, et son entrée dans la fenêtre Système."
+    }
+  ],
+  "ui": {
+    "apiVersion": 1,
+    "provides": ["browser"],
+    "html": ["view.html"],
+    "styles": ["browser.css"],
+    "scripts": ["locales.js", "browser.js"]
+  },
+  "locales": {
+    "en": {
+      "name": "Browser",
+      "description": "The live view of your agents' browser: one tab per agent where you watch the page it handles, take the hand with a click to sign in to a site or to correct, then give it back. The browser's tools are Allkin's (the right “Browser” on the agent's page): this integration shows them.",
+      "permissions": {
+        "interface": "Adds the Browser tab, which shows each agent's browser live, and its entry in the System window."
+      }
+    },
+    "es": {
+      "name": "Navegador",
+      "description": "La vista en directo del navegador de sus agentes: una pestaña por agente donde usted mira la página que manipula, toma el control con un clic para iniciar sesión en un sitio o corregir, y se lo devuelve. Las herramientas del navegador son las de Allkin (derecho «Navegador» de la página del agente): esta integración las muestra.",
+      "permissions": {
+        "interface": "Añade la pestaña Navegador, que muestra en directo el navegador de cada agente, y su entrada en la ventana Sistema."
+      }
+    },
+    "de": {
+      "name": "Browser",
+      "description": "Die Live-Ansicht des Browsers Ihrer Agenten: ein Tab pro Agent, in dem Sie die Seite sehen, die er bedient, mit einem Klick die Kontrolle übernehmen, um sich bei einer Website anzumelden oder zu korrigieren, und sie dann zurückgeben. Die Werkzeuge des Browsers sind die von Allkin (Recht „Browser“ auf der Seite des Agenten): diese Integration zeigt sie.",
+      "permissions": {
+        "interface": "Fügt den Tab Browser hinzu, der den Browser jedes Agenten live zeigt, und seinen Eintrag im Systemfenster."
+      }
+    }
+  }
+}
