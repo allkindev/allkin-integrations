@@ -1,0 +1,33 @@
+<template data-slot="views">
+  <!-- The Telegram page (2026-11-06, style D of mockups/telegram): the page
+       bar — the search, the agent filter —, the access requests, the table
+       of the bots (a row unfolds on its conversations), and the page's foot —
+       the totals, "Add a bot". Icons are filled in by telegram.js from
+       data-tgb-icon; the rows and the windows are drawn there too. -->
+  <div class="hub-view hidden tgb-view" id="tgb-view">
+    <div class="hub-page tgb-page" id="tgb-browse">
+      <div class="hub-bar page-bar">
+        <label class="hub-search hub-bar-search">
+          <span class="tgb-ico" data-tgb-icon="magnifying-glass" aria-hidden="true"></span>
+          <input type="search" id="tgb-search" data-i18n-placeholder="plugin.telegram-bridge.search" data-i18n-aria-label="plugin.telegram-bridge.search" autocomplete="off" />
+        </label>
+        <button type="button" class="secondary tgb-filter" id="tgb-filter" aria-haspopup="menu" data-tgb-icon="funnel" data-i18n-title="plugin.telegram-bridge.col.agents">
+          <span class="page-bar-label" id="tgb-filter-label"></span><span class="tgb-caret-down" data-tgb-icon="caret-down" aria-hidden="true"></span>
+        </button>
+        <div class="hub-bar-actions">
+          <button type="button" class="secondary" id="tgb-refresh" data-tgb-icon="arrows-clockwise" data-i18n-title="plugin.telegram-bridge.refresh" data-i18n-aria-label="plugin.telegram-bridge.refresh"></button>
+        </div>
+      </div>
+      <div class="tgb-requests" id="tgb-requests"></div>
+      <div class="tgb-body" id="tgb-body"></div>
+      <div class="page-foot">
+        <span class="page-foot-meta" id="tgb-totals"></span>
+        <div class="page-foot-actions">
+          <button type="button" class="page-foot-primary" id="tgb-add" data-tgb-icon="plus">
+            <span class="page-bar-label" data-i18n="plugin.telegram-bridge.add"></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

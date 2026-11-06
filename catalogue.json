@@ -4,7 +4,7 @@
     {
       "id": "browser",
       "name": "Navigateur",
-      "version": "1.0.2",
+      "version": "1.0.3",
       "description": "La vue en direct du navigateur de vos agents : un onglet par agent où vous regardez la page qu'il manipule, reprenez la main d'un clic pour vous connecter à un site ou corriger, puis la lui rendez. Les outils du navigateur sont ceux d'Allkin (droit « Navigateur » de la page de l'agent) : cette intégration les montre.",
       "author": "Allkin",
       "permissions": [
@@ -17,7 +17,7 @@
       "web": false,
       "ui": true,
       "icon": "icon.svg",
-      "updatedAt": "2026-11-06T09:35:17.850Z",
+      "updatedAt": "2026-11-06T10:35:18+01:00",
       "locales": {
         "en": {
           "name": "Browser",
@@ -44,33 +44,33 @@
       "files": [
         {
           "path": "README-DE.md",
-          "size": 3398,
-          "sha256": "74db7216ecb682f1d9d5e9e830e0603a087830887218d8e9edf9b8be45885566"
+          "size": 4408,
+          "sha256": "a671c43038f5a6ff6377e69d064180375447516bbd1770f647206227d709a0e9"
         },
         {
           "path": "README-EN.md",
-          "size": 2909,
-          "sha256": "7526b0cc494532fe8b06c2aa8c534b6e9ac80d60192541d49d16896d199728e0"
+          "size": 3782,
+          "sha256": "5ff4b8ec85f832721c820e8ef89750fe83857b22dd1dc1166ec2d66ad0ce3b9b"
         },
         {
           "path": "README-ES.md",
-          "size": 3138,
-          "sha256": "09ace4b58ca95a7e68ad1eff2ffd7c230440003e83fee69d4cc5cb1a7ae19b85"
+          "size": 4063,
+          "sha256": "4fdb5e0d345bee879d2e3cd915d961d970b9d108f27a68d5cedb087271dc60dc"
         },
         {
           "path": "README.md",
-          "size": 3224,
-          "sha256": "15d6229a197e0247476247e9a4c6a5398d4ee81295407706f3bb201d4a678015"
+          "size": 4186,
+          "sha256": "72ec68efa459bc2a101f6b3804695971c3c4bd682e33b5076ae756daed372934"
         },
         {
           "path": "browser.css",
-          "size": 6062,
-          "sha256": "aea84a47d6c92c7aaaef6caad1982755277d3498bc20cef5cc862b8f78691729"
+          "size": 6132,
+          "sha256": "cf303cd308060ab56f070f9598c973dbc935b86a5b823e889e72c917e69be9d4"
         },
         {
           "path": "browser.js",
-          "size": 34879,
-          "sha256": "a01a64fb2ab3a2dcaac63354ab163e510ee64c8ef603b63ae686ec49044f2d17"
+          "size": 37991,
+          "sha256": "9e1c5c3bb0bc7fe06d6d0ced0bf88dd5e35dce2963d47966bf0d37887c3d16de"
         },
         {
           "path": "icon.svg",
@@ -79,13 +79,13 @@
         },
         {
           "path": "locales.js",
-          "size": 9132,
-          "sha256": "b71f1e3deddbf2fa8d0875346709b1e5aa97159827c470861cd0e3bf45b99123"
+          "size": 11106,
+          "sha256": "cdef62739bbe33c7ab8d8ac4dfbefd5036c8d5e6685a4076ee156f11254d9052"
         },
         {
           "path": "plugin.json",
           "size": 2476,
-          "sha256": "bc1dd1e1ff686e003044c96fe864b9540f17d83a9ee105bd21aba36b4024561d"
+          "sha256": "9a8fda62c1a98943ecedfe426cb58478022f69832b68088f869264561913107d"
         },
         {
           "path": "view.html",
@@ -110,7 +110,7 @@
       "web": false,
       "ui": true,
       "icon": "icon.svg",
-      "updatedAt": "2026-11-06T09:35:17.867Z",
+      "updatedAt": "2026-11-06T10:35:18+01:00",
       "locales": {
         "en": {
           "name": "Forge",
@@ -207,7 +207,7 @@
       "web": false,
       "ui": false,
       "icon": "icon.svg",
-      "updatedAt": "2026-11-03T11:56:50+01:00",
+      "updatedAt": "2026-11-06T10:35:18+01:00",
       "locales": {
         "en": {
           "name": "Home Assistant bridge",
@@ -291,7 +291,7 @@
       "requires": [
         "markdown-editor"
       ],
-      "updatedAt": "2026-11-03T11:56:50+01:00",
+      "updatedAt": "2026-11-06T10:35:18+01:00",
       "locales": {
         "en": {
           "name": "Notes",
@@ -384,7 +384,7 @@
       "web": true,
       "ui": false,
       "icon": "icon.svg",
-      "updatedAt": "2026-11-03T11:56:50+01:00",
+      "updatedAt": "2026-11-06T10:35:18+01:00",
       "locales": {
         "en": {
           "name": "Recordr",
@@ -479,82 +479,89 @@
     {
       "id": "telegram-bridge",
       "name": "Pont Telegram",
-      "version": "1.0.6",
-      "description": "Parlez à vos agents depuis Telegram : un bot écoute en continu, relaie chaque message à l'agent de votre choix et renvoie sa réponse. Les commandes à valider arrivent avec deux boutons.",
+      "version": "1.0.7",
+      "description": "Parlez à vos agents depuis Telegram : plusieurs bots, chacun relié à un ou plusieurs agents, gérés depuis une page dédiée — qui peut leur écrire, quel agent répond, les conversations en cours. Les commandes à valider arrivent avec deux boutons.",
       "author": "Allkin",
       "permissions": [
         {
           "id": "network",
-          "reason": "Interroge l'API de Telegram en continu (long polling) et y renvoie les réponses des agents ; télécharge les fichiers reçus."
+          "reason": "Interroge l'API de Telegram en continu (long polling) pour chaque bot et y renvoie les réponses des agents ; télécharge les fichiers reçus ; sert l'API de sa page sur un port local, relayée par Allkin."
         },
         {
           "id": "agents",
-          "reason": "Ouvre une conversation avec l'agent choisi par la socket d'Allkin, lui transmet les messages et valide ou refuse ses commandes depuis Telegram."
+          "reason": "Ouvre une conversation avec l'agent de chaque chat par la socket d'Allkin, lui transmet les messages et valide ou refuse ses commandes depuis Telegram."
         },
         {
           "id": "filesystem",
           "reason": "Dépose les photos et fichiers reçus dans le dossier Upload de l'agent."
+        },
+        {
+          "id": "interface",
+          "reason": "Ajoute la page Telegram à Allkin : la liste des bots, leurs agents, qui peut leur écrire et les conversations en cours, et son entrée dans la fenêtre Système."
         }
       ],
       "service": true,
-      "web": false,
-      "ui": false,
+      "web": true,
+      "ui": true,
       "icon": "icon.svg",
-      "updatedAt": "2026-11-03T11:56:50+01:00",
+      "updatedAt": "2026-11-06T10:35:18+01:00",
       "locales": {
         "en": {
           "name": "Telegram bridge",
-          "description": "Talk to your agents from Telegram: a bot listens continuously, relays every message to the agent of your choice and sends its answer back. Commands to approve come with two buttons.",
+          "description": "Talk to your agents from Telegram: several bots, each bound to one agent or several, managed from a page of their own — who may write to them, which agent answers, the conversations under way. Commands to approve come with two buttons.",
           "permissions": {
-            "network": "Polls the Telegram API continuously (long polling) and sends the agents' answers back; downloads received files.",
-            "agents": "Opens a conversation with the chosen agent through Allkin's socket, passes the messages on, and approves or refuses its commands from Telegram.",
-            "filesystem": "Drops received photos and files into the agent's Upload folder."
+            "network": "Polls the Telegram API continuously (long polling) for each bot and sends the agents' answers back; downloads received files; serves its page's API on a local port, relayed by Allkin.",
+            "agents": "Opens a conversation with each chat's agent through Allkin's socket, passes the messages on, and approves or refuses its commands from Telegram.",
+            "filesystem": "Drops received photos and files into the agent's Upload folder.",
+            "interface": "Adds the Telegram page to Allkin: the list of bots, their agents, who may write to them and the conversations under way, and its entry in the System window."
           }
         },
         "es": {
           "name": "Puente Telegram",
-          "description": "Habla con tus agentes desde Telegram: un bot escucha en continuo, reenvía cada mensaje al agente que elijas y devuelve su respuesta. Los comandos por validar llegan con dos botones.",
+          "description": "Hable con sus agentes desde Telegram: varios bots, cada uno unido a uno o varios agentes, gestionados desde una página propia — quién puede escribirles, qué agente responde, las conversaciones en curso. Los comandos por validar llegan con dos botones.",
           "permissions": {
-            "network": "Consulta la API de Telegram en continuo (long polling) y devuelve las respuestas de los agentes; descarga los archivos recibidos.",
-            "agents": "Abre una conversación con el agente elegido a través del socket de Allkin, le pasa los mensajes y autoriza o rechaza sus comandos desde Telegram.",
-            "filesystem": "Deposita las fotos y archivos recibidos en la carpeta Upload del agente."
+            "network": "Consulta la API de Telegram en continuo (long polling) para cada bot y devuelve las respuestas de los agentes; descarga los archivos recibidos; sirve la API de su página en un puerto local, retransmitida por Allkin.",
+            "agents": "Abre una conversación con el agente de cada chat a través del socket de Allkin, le pasa los mensajes y autoriza o rechaza sus comandos desde Telegram.",
+            "filesystem": "Deposita las fotos y archivos recibidos en la carpeta Upload del agente.",
+            "interface": "Añade la página Telegram a Allkin: la lista de bots, sus agentes, quién puede escribirles y las conversaciones en curso, y su entrada en la ventana Sistema."
           }
         },
         "de": {
           "name": "Telegram-Brücke",
-          "description": "Sprich von Telegram aus mit deinen Agenten: Ein Bot hört ständig zu, leitet jede Nachricht an den gewählten Agenten weiter und schickt seine Antwort zurück. Freizugebende Befehle kommen mit zwei Schaltflächen.",
+          "description": "Sprechen Sie von Telegram aus mit Ihren Agenten: mehrere Bots, jeder mit einem oder mehreren Agenten verbunden, auf einer eigenen Seite verwaltet — wer ihnen schreiben darf, welcher Agent antwortet, die laufenden Unterhaltungen. Freizugebende Befehle kommen mit zwei Schaltflächen.",
           "permissions": {
-            "network": "Fragt die Telegram-API fortlaufend ab (Long Polling) und schickt die Antworten der Agenten zurück; lädt empfangene Dateien herunter.",
-            "agents": "Öffnet über die Socket von Allkin eine Unterhaltung mit dem gewählten Agenten, reicht die Nachrichten weiter und gibt seine Befehle aus Telegram frei oder lehnt sie ab.",
-            "filesystem": "Legt empfangene Fotos und Dateien im Upload-Ordner des Agenten ab."
+            "network": "Fragt die Telegram-API für jeden Bot fortlaufend ab (Long Polling) und schickt die Antworten der Agenten zurück; lädt empfangene Dateien herunter; stellt die API seiner Seite auf einem lokalen Port bereit, von Allkin weitergeleitet.",
+            "agents": "Öffnet über die Socket von Allkin eine Unterhaltung mit dem Agenten jedes Chats, reicht die Nachrichten weiter und gibt seine Befehle aus Telegram frei oder lehnt sie ab.",
+            "filesystem": "Legt empfangene Fotos und Dateien im Upload-Ordner des Agenten ab.",
+            "interface": "Fügt Allkin die Seite Telegram hinzu: die Liste der Bots, ihre Agenten, wer ihnen schreiben darf und die laufenden Unterhaltungen, und ihren Eintrag im Systemfenster."
           }
         }
       },
       "files": [
         {
           "path": "README-DE.md",
-          "size": 2747,
-          "sha256": "645908056e86c19b9c8bbe821d81ebefcdc3431b851ae009e5aba69661c2e4a4"
+          "size": 6152,
+          "sha256": "5c84ef9783a1f31e02b05b1c53bb96eb31e24788aba65dab22ec6127fedcfb81"
         },
         {
           "path": "README-EN.md",
-          "size": 2576,
-          "sha256": "471ff60a7f976689a5f1c2f4b1d916f62b07894647153601e4d263bf1921b8c4"
+          "size": 5521,
+          "sha256": "02cd0459e084d2ed7c61a660d23e1786e5ec6bba03b70cdfcb3fb758483dd50d"
         },
         {
           "path": "README-ES.md",
-          "size": 2717,
-          "sha256": "c15380255a436c7ee1085f8aab300fdf025f81397a9e68a43b5c28c7e896d151"
+          "size": 5926,
+          "sha256": "565b8da8d52513841f5cd5cd97a712410f74ee0067965e643b58e840aa731dee"
         },
         {
           "path": "README.md",
-          "size": 2870,
-          "sha256": "761d4b79120e7f3b9dddfdeac6a3b15d2ef5892091a304ed129483eec06f8440"
+          "size": 6094,
+          "sha256": "cd0a36efb235c2ad5e48ff72629441ad27a1b23bf2b870daf49737a40167260d"
         },
         {
           "path": "bridge.mjs",
-          "size": 23084,
-          "sha256": "5d9c49e952f340681f22fc1459f3e14ba06bf600ab8fbc6016a46afade990c40"
+          "size": 51765,
+          "sha256": "2915cec6b2b2e0e7256d8872949a3f31344d8e78b4c56ef9944fe64043e320dd"
         },
         {
           "path": "icon.svg",
@@ -562,9 +569,29 @@
           "sha256": "fb52d31e2ebcbdb3f8dd3336f885fc29991fbf6eec6e94509801dc43f70acd55"
         },
         {
+          "path": "locales.js",
+          "size": 53514,
+          "sha256": "888839fd684024c8e3a83b2c426341e9a49d39e8e11b1e2098c3aa7dce71198c"
+        },
+        {
           "path": "plugin.json",
-          "size": 7591,
-          "sha256": "106a12adfc14f0224954ced17c40c2af821455a3ca97d7aacd1e155352e28fc9"
+          "size": 9202,
+          "sha256": "c5b9e40547fda9009fc9136a3547e88cd2ae98b98e36ba82ca30c92a0be04a30"
+        },
+        {
+          "path": "telegram.css",
+          "size": 20337,
+          "sha256": "1b160c8f0d97a1bf7fa05a28a2cc68f51a2da432365e5bbc8c15d894d2393ddc"
+        },
+        {
+          "path": "telegram.js",
+          "size": 59108,
+          "sha256": "da029e9a8afb52ef753fcca9bff3c71109ad255e349322ae7c99523e3dfc578e"
+        },
+        {
+          "path": "view.html",
+          "size": 2008,
+          "sha256": "bc0de365dfd0393af76f2274b21f2d76d19fec97f62fb8c518fe26325e377736"
         }
       ]
     },
@@ -593,7 +620,7 @@
       "web": true,
       "ui": false,
       "icon": "icon.svg",
-      "updatedAt": "2026-11-03T11:56:50+01:00",
+      "updatedAt": "2026-11-06T10:35:18+01:00",
       "locales": {
         "en": {
           "name": "WeTTY",

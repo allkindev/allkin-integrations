@@ -49,6 +49,19 @@ Handeln erneut liest.
 - Der Agent tippt nie ein Passwort: Allkin lehnt ab, und er übergibt Ihnen die Seite.
 - Downloads landen im Ordner `Downloads/` des Agenten.
 
+## Der Chrome Ihres eigenen Computers
+
+Wenn Allkin Client auf diesem Server geöffnet ist und seine Einstellung **Browser** für diesen
+Server eingeschaltet ist, kann ein Agent, der auch das Recht **Ihre Computer** hat, **den Chrome
+Ihres PCs** öffnen, vor Ihren Augen: das Fenster erscheint auf Ihrem Bildschirm, in einem
+eigenen Profil „Allkin“ (Ihre Sitzungen bleiben dort von Mal zu Mal, Ihre Passwörter sind nicht
+darin), und der Agent surft darin wie in seinem eigenen. Ein Klick oder eine Taste von Ihnen im
+Fenster übernimmt die Kontrolle: der Agent wartet und macht fünfzehn Sekunden nach Ihrer letzten
+Geste weiter. Das Fenster zu schließen schließt den Browser des Agenten, der ihn nicht von sich
+aus wieder öffnet. Die Karten und die Zeilen der Unterhaltung sagen „Im Chrome von …“. Diese
+Integration öffnet keinen Tab für diesen Browser — er ist auf Ihrem Bildschirm —, aber
+**Einstellungen › Browser › Ansehen** zeigt ihn trotzdem, zum Beispiel von einem Telefon aus.
+
 ## Was der Browser nicht erreicht
 
 Das Netz des Rechners (localhost, private Adressen, Tailscale) bleibt außer Reichweite, solange

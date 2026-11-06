@@ -1,6 +1,6 @@
 {
   "name": "Navigateur",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "La vue en direct du navigateur de vos agents : un onglet par agent où vous regardez la page qu'il manipule, reprenez la main d'un clic pour vous connecter à un site ou corriger, puis la lui rendez. Les outils du navigateur sont ceux d'Allkin (droit « Navigateur » de la page de l'agent) : cette intégration les montre.",
   "author": "Allkin",
   "permissions": [

@@ -46,6 +46,18 @@ agent, which reads it again before acting.
 - The agent never types a password: Allkin refuses, and it hands you the page.
 - Downloads land in the agent's `Downloads/` folder.
 
+## The Chrome of your own computer
+
+When Allkin Client is open on this server and its **Browser** setting is on for this server, an
+agent that also has the right **Your computers** can open **the Chrome of your PC**, before your
+eyes: the window appears on your screen, in a separate "Allkin" profile (your sessions stay
+there from one time to the next, your passwords are not in it), and the agent browses in it as
+in its own. A click or a key of yours in the window takes the hand: the agent waits, and goes on
+fifteen seconds after your last gesture. Closing the window closes the agent's browser, which
+does not open it again on its own. The cards and the lines of the conversation say "In the
+Chrome of …". This integration opens no tab for that browser — it is on your screen —, but
+**Settings › Browser › View** still shows it, from a phone for instance.
+
 ## What the browser does not reach
 
 The machine's own network (localhost, private addresses, Tailscale) stays out of reach unless

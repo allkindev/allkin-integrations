@@ -46,6 +46,19 @@ la página al agente, que la relee antes de actuar.
 - El agente nunca escribe una contraseña: Allkin lo rechaza, y le cede la página.
 - Las descargas llegan a la carpeta `Downloads/` del agente.
 
+## El Chrome de su propio ordenador
+
+Cuando Allkin Client está abierto en este servidor y su ajuste **Navegador** está activado para
+este servidor, un agente que tenga también el derecho **Sus ordenadores** puede abrir **el
+Chrome de su PC**, ante sus ojos: la ventana aparece en su pantalla, en un perfil «Allkin»
+aparte (sus sesiones se conservan de una vez a otra, sus contraseñas no están en él), y el
+agente navega en él como en el suyo. Un clic o una tecla suya en la ventana toma el control: el
+agente espera, y sigue quince segundos después de su último gesto. Cerrar la ventana cierra el
+navegador del agente, que no lo vuelve a abrir por sí mismo. Las tarjetas y las líneas de la
+conversación dicen «En el Chrome de …». Esta integración no abre pestaña para ese navegador
+—está en su pantalla—, pero **Ajustes › Navegador › Ver** lo muestra igualmente, desde un
+teléfono por ejemplo.
+
 ## Lo que el navegador no alcanza
 
 La red de la máquina (localhost, direcciones privadas, Tailscale) queda fuera de su alcance

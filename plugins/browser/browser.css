@@ -26,10 +26,11 @@
 .brw-tabs .brw-caret svg { width: 12px; height: 12px; opacity: 0.7; }
 
 /* The frame: the room where the page's image lands, the page fitted to it
-   or at its real size (then it scrolls). A ring says the agent drives. */
+   or at its real size (then it scrolls; the picture's own size, 1280 px on
+   the server, the window's on a PC). A ring says the agent drives. */
 .brw-frame { position: relative; flex: 1; min-height: 0; overflow: auto; background: var(--bg-alt); overscroll-behavior: contain; }
 .brw-img { display: block; width: 100%; max-width: 1280px; margin: 0 auto; background: #fff; box-shadow: 0 0 0 1px var(--border); user-select: none; -webkit-user-drag: none; }
-.brw-view.is-real .brw-img { width: 1280px; max-width: none; }
+.brw-view.is-real .brw-img { width: auto; max-width: none; }
 .brw-view[data-hand="user"] .brw-img { cursor: default; }
 .brw-view[data-hand="agent"] .brw-frame::after { content: ""; position: sticky; display: block; inset: 0; pointer-events: none; }
 .brw-view[data-hand="agent"] .brw-img { box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 55%, transparent); }

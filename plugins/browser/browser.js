@@ -14,6 +14,12 @@
    a dialog answered) and /ws/browser (the frames down, the gestures up),
    and listens to `browsers_changed` on the activity socket to open the tab
    when a browser opens for the agent whose conversation is shown.
+
+   The Chrome of one of the user's PCs (2026-11-06, lot 2): the same view,
+   its tab's path `<agent>@<computer>`, `?computer=` on every call. It is
+   not opened by itself — the window is on the user's own screen — but it
+   serves to watch, from a phone say, what the agent does there; the size
+   of the picture is the window's, read from the frames.
    ========================================================================== */
 (() => {
 const Allkin = window.Allkin;
@@ -22,7 +28,8 @@ const { el } = core;
 const t = Allkin.t;
 
 const KIND = "browser";
-/** The viewport of the agent's browser (BROWSER_LIMITS.viewport). */
+/** The viewport of the agent's browser on the server (BROWSER_LIMITS.viewport);
+ *  a PC's Chrome has its window's, read from the frames (`current.size`). */
 const VIEW = { width: 1280, height: 800 };
 const toast = (message, kind = "ok") => core.toast?.(message, kind);
 const isPhone = () => window.matchMedia("(max-width: 720px)").matches;
@@ -66,8 +73,22 @@ const api = (path, options) => core.api(path, options);
 const agentName = (agentId) => core.state.agents?.find((a) => a.id === agentId)?.name ?? agentId;
 const view = () => el("brw-view");
 
-function openView(agentId) {
-  core.openTab(null, KIND, { path: agentId, name: agentName(agentId) });
+/** The path of a tab: the agent, and the computer when the browser is a PC's. */
+const pathOf = (agentId, computerId) => (computerId ? `${agentId}@${computerId}` : agentId);
+const parsePath = (path) => {
+  const at = String(path ?? "").indexOf("@");
+  return at > 0 ? { agentId: path.slice(0, at), computerId: path.slice(at + 1) } : { agentId: String(path ?? ""), computerId: null };
+};
+const keyOf = (b) => pathOf(b.agentId, b.computer?.id);
+/** `?computer=` for the calls of the view shown. */
+const query = () => (current?.computerId ? `?computer=${encodeURIComponent(current.computerId)}` : "");
+const computerName = () => current?.state?.computer?.name ?? current?.computerName ?? current?.computerId ?? "";
+const size = () => current?.size ?? VIEW;
+
+function openView(agentId, computerId) {
+  const open = status?.open?.find((b) => b.agentId === agentId && (b.computer?.id ?? null) === (computerId ?? null));
+  const name = computerId ? t("plugin.browser.tab.computer", { agent: agentName(agentId), computer: open?.computer?.name ?? computerId }) : agentName(agentId);
+  core.openTab(null, KIND, { path: pathOf(agentId, computerId), name });
 }
 
 /* ---- The state drawn ----------------------------------------------------- */
@@ -80,6 +101,7 @@ function render(state) {
   v.dataset.hand = hand;
   v.classList.toggle("is-off", !state);
   const name = agentName(current.agentId);
+  const pc = state?.computer?.name ?? computerName();
   const url = el("brw-url-input");
   if (document.activeElement !== url) url.value = state?.url ?? "";
   url.readOnly = hand !== "user";
@@ -87,7 +109,19 @@ function render(state) {
   const tabs = state?.tabs ?? [];
   el("brw-tabs-label").textContent = tabs.length === 1 ? t("plugin.browser.tabs.one") : t("plugin.browser.tabs", { n: tabs.length });
   const page = state?.title || state?.url || "";
-  el("brw-cap-title").textContent = hand === "user" ? t("plugin.browser.state.user") : page ? t("plugin.browser.state.agent.page", { agent: name, page }) : t("plugin.browser.state.agent", { agent: name });
+  // A PC's Chrome: the capsule names the computer; the hand there is the user's as soon as they act in the window.
+  el("brw-cap-title").textContent =
+    hand === "user"
+      ? current.computerId
+        ? t("plugin.browser.state.user.computer", { computer: pc })
+        : t("plugin.browser.state.user")
+      : current.computerId
+        ? page
+          ? t("plugin.browser.state.agent.computer.page", { agent: name, computer: pc, page })
+          : t("plugin.browser.state.agent.computer", { agent: name, computer: pc })
+        : page
+          ? t("plugin.browser.state.agent.page", { agent: name, page })
+          : t("plugin.browser.state.agent", { agent: name });
   el("brw-cap-note").textContent = hand === "user" ? t("plugin.browser.state.user.waits", { agent: name }) : state?.url ?? "";
   const handBtn = el("brw-hand");
   handBtn.innerHTML = iconSvg(hand === "user" ? "arrow-u-up-left" : "hand") + `<span>${core.escapeHtml(t(hand === "user" ? "plugin.browser.hand.give" : "plugin.browser.hand.take"))}</span>`;
@@ -102,7 +136,7 @@ function render(state) {
     el("brw-dialog-dismiss").classList.toggle("hidden", dialog.type === "alert");
   }
   el("brw-closed").classList.add("hidden");
-  el("brw-foot-text").textContent = hand === "user" ? t("plugin.browser.keys.hint") : `${t("plugin.browser.live")} · ${VIEW.width} × ${VIEW.height}${current.fps ? ` · ${t("plugin.browser.fps", { n: current.fps })}` : ""}`;
+  el("brw-foot-text").textContent = hand === "user" ? t("plugin.browser.keys.hint") : `${t("plugin.browser.live")} · ${size().width} × ${size().height}${current.fps ? ` · ${t("plugin.browser.fps", { n: current.fps })}` : ""}`;
 }
 
 function showClosed() {
@@ -111,7 +145,9 @@ function showClosed() {
   v.dataset.hand = "agent";
   v.classList.add("is-off");
   el("brw-closed").classList.remove("hidden");
-  el("brw-closed-text").textContent = t("plugin.browser.closed.text", { agent: agentName(current.agentId) });
+  el("brw-closed-text").textContent = current.computerId
+    ? t("plugin.browser.closed.text.computer", { agent: agentName(current.agentId), computer: computerName() })
+    : t("plugin.browser.closed.text", { agent: agentName(current.agentId) });
   el("brw-dialog").classList.add("hidden");
   el("brw-foot-text").textContent = t("plugin.browser.closed.title");
   el("brw-cap-title").textContent = agentName(current.agentId);
@@ -123,7 +159,8 @@ function showClosed() {
 function openSocket() {
   if (!current || current.ws) return;
   const agentId = current.agentId;
-  const ws = new WebSocket(`${location.protocol === "https:" ? "wss" : "ws"}://${location.host}/ws/browser?agentId=${encodeURIComponent(agentId)}`);
+  const computer = current.computerId ? `&computer=${encodeURIComponent(current.computerId)}` : "";
+  const ws = new WebSocket(`${location.protocol === "https:" ? "wss" : "ws"}://${location.host}/ws/browser?agentId=${encodeURIComponent(agentId)}${computer}`);
   current.ws = ws;
   current.frames = 0;
   ws.addEventListener("message", (event) => {
@@ -137,6 +174,11 @@ function openSocket() {
     if (msg.type === "frame") {
       el("brw-img").src = `data:image/jpeg;base64,${msg.data}`;
       current.frames += 1;
+      // The size of the picture: the window's on a PC (the first frame says it, and a resize).
+      if (msg.width && msg.height && (current.size?.width !== msg.width || current.size?.height !== msg.height)) {
+        current.size = { width: msg.width, height: msg.height };
+        if (current.state && current.state.hand !== "user") render(current.state);
+      }
     } else if (msg.type === "state") {
       render(msg.state);
     } else if (msg.type === "closed") {
@@ -148,7 +190,7 @@ function openSocket() {
     current.ws = null;
     // The browser closed (4004): said. Anything else: the page lost its socket, it comes back.
     if (event.code === 4004) showClosed();
-    else if (current.state) current.retry = setTimeout(() => current && !current.ws && void connect(current.agentId, true), 2000);
+    else if (current.state) current.retry = setTimeout(() => current && !current.ws && void connect(current.path, true), 2000);
   });
 }
 
@@ -163,26 +205,28 @@ function closeSocket() {
   } catch {}
 }
 
-async function connect(agentId, again = false) {
+async function connect(path, again = false) {
+  const { agentId, computerId } = parsePath(path);
   if (!again) {
     disconnect();
-    current = { agentId, ws: null, state: null, frames: 0, fps: 0 };
+    const open = status?.open?.find((b) => b.agentId === agentId && (b.computer?.id ?? null) === computerId);
+    current = { path, agentId, computerId, computerName: open?.computer?.name ?? null, ws: null, state: null, frames: 0, fps: 0, size: null };
     el("brw-img").removeAttribute("src");
     core.renderAgentAvatar?.(el("brw-avatar"), agentId);
     current.fpsTimer = setInterval(() => {
       if (!current) return;
       current.fps = current.frames;
       current.frames = 0;
-      if (current.state && current.state.hand !== "user") el("brw-foot-text").textContent = `${t("plugin.browser.live")} · ${VIEW.width} × ${VIEW.height}${current.fps ? ` · ${t("plugin.browser.fps", { n: current.fps })}` : ""}`;
+      if (current.state && current.state.hand !== "user") el("brw-foot-text").textContent = `${t("plugin.browser.live")} · ${size().width} × ${size().height}${current.fps ? ` · ${t("plugin.browser.fps", { n: current.fps })}` : ""}`;
     }, 1000);
   }
   try {
-    const data = await api(`/api/browser/${encodeURIComponent(agentId)}`);
-    if (!current || current.agentId !== agentId) return;
+    const data = await api(`/api/browser/${encodeURIComponent(agentId)}${query()}`);
+    if (!current || current.path !== path) return;
     render(data.state);
     openSocket();
   } catch {
-    if (current && current.agentId === agentId) showClosed();
+    if (current && current.path === path) showClosed();
   }
 }
 
@@ -201,7 +245,7 @@ const send = (message) => {
 async function setHand(hand) {
   if (!current) return;
   try {
-    await api(`/api/browser/${encodeURIComponent(current.agentId)}/hand`, { method: "POST", body: JSON.stringify({ hand }) });
+    await api(`/api/browser/${encodeURIComponent(current.agentId)}/hand${query()}`, { method: "POST", body: JSON.stringify({ hand }) });
     if (hand === "user") {
       toast(t("plugin.browser.hand.taken"));
       el("brw-keys").focus({ preventScroll: true });
@@ -215,7 +259,7 @@ async function setHand(hand) {
 function pagePoint(event) {
   const img = el("brw-img");
   const rect = img.getBoundingClientRect();
-  const scale = rect.width ? VIEW.width / rect.width : 1;
+  const scale = rect.width ? size().width / rect.width : 1;
   return { x: Math.round((event.clientX - rect.left) * scale), y: Math.round((event.clientY - rect.top) * scale) };
 }
 
@@ -314,7 +358,7 @@ function bindInput() {
 async function userRequest(path, body) {
   if (!current) return;
   try {
-    const data = await api(`/api/browser/${encodeURIComponent(current.agentId)}/${path}`, { method: "POST", body: JSON.stringify(body) });
+    const data = await api(`/api/browser/${encodeURIComponent(current.agentId)}/${path}${query()}`, { method: "POST", body: JSON.stringify(body) });
     if (data?.state) render(data.state);
   } catch (err) {
     toast(t("plugin.browser.error", { error: err.message }), "ko");
@@ -359,7 +403,7 @@ function bindBar() {
       { label: t("plugin.browser.menu.open"), iconHtml: iconSvg("arrow-square-out"), disabled: !state?.url, onClick: () => window.open(state.url, "_blank", "noopener") },
       { label: t("plugin.browser.menu.copy"), iconHtml: iconSvg("copy"), disabled: !state?.url, onClick: () => { void core.copyToClipboard?.(state.url); toast(t("plugin.browser.copied")); } },
       "sep",
-      { label: t("plugin.browser.menu.close"), iconHtml: iconSvg("x"), danger: true, disabled: !state, onClick: () => current && void api(`/api/browser/${encodeURIComponent(current.agentId)}/close`, { method: "POST" }).catch((err) => toast(t("plugin.browser.error", { error: err.message }), "ko")) },
+      { label: t("plugin.browser.menu.close"), iconHtml: iconSvg("x"), danger: true, disabled: !state, onClick: () => current && void api(`/api/browser/${encodeURIComponent(current.agentId)}/close${query()}`, { method: "POST" }).catch((err) => toast(t("plugin.browser.error", { error: err.message }), "ko")) },
     ];
     core.menu(event.currentTarget, items);
   });
@@ -368,8 +412,8 @@ function bindBar() {
     if (!current) return;
     el("brw-open").disabled = true;
     try {
-      await api(`/api/browser/${encodeURIComponent(current.agentId)}/open`, { method: "POST" });
-      await connect(current.agentId, true);
+      await api(`/api/browser/${encodeURIComponent(current.agentId)}/open${query()}`, { method: "POST" });
+      await connect(current.path, true);
     } catch (err) {
       toast(t("plugin.browser.error", { error: err.message }), "ko");
     } finally {
@@ -402,9 +446,9 @@ Allkin.registerTabKind(KIND, {
   panels: ["brw-view"],
   icon: TAB_ICON,
   byPath: true,
-  label: (tab) => tab.name || agentName(tab.path),
+  label: (tab) => tab.name || agentName(parsePath(tab.path).agentId),
   meta: t("plugin.browser.tab"),
-  tooltip: (tab) => t("plugin.browser.state.agent", { agent: tab.name || agentName(tab.path) }),
+  tooltip: (tab) => t("plugin.browser.state.agent", { agent: tab.name || agentName(parsePath(tab.path).agentId) }),
   activate: (tab) => void connect(tab.path),
   leave: () => disconnect(),
   beforeClose: () => disconnect(),
@@ -413,8 +457,8 @@ Allkin.registerTabKind(KIND, {
 /** The System window's entry: the browser of the agent shown, else the first open, else nothing. */
 function openApp() {
   const open = status?.open ?? [];
-  const mine = open.find((b) => b.agentId === core.state.currentAgentId) ?? open[0];
-  if (mine) openView(mine.agentId);
+  const mine = open.find((b) => b.agentId === core.state.currentAgentId && !b.computer) ?? open.find((b) => b.agentId === core.state.currentAgentId) ?? open[0];
+  if (mine) openView(mine.agentId, mine.computer?.id);
   else if (core.state.currentAgentId) openView(core.state.currentAgentId);
   else toast(t("plugin.browser.none"));
 }
@@ -452,15 +496,16 @@ let known = new Set();
 core.onActivity?.((msg) => {
   if (msg?.type !== "browsers_changed") return;
   status = msg.status ?? null;
-  const now = new Set((status?.open ?? []).map((b) => b.agentId));
+  const now = new Set((status?.open ?? []).map(keyOf));
   for (const b of status?.open ?? []) {
-    const key = `${b.agentId}@${b.openedAt}`;
-    if (known.has(b.agentId) || autoOpened.has(key)) continue;
+    const key = `${keyOf(b)}@${b.openedAt}`;
+    if (known.has(keyOf(b)) || autoOpened.has(key)) continue;
     autoOpened.add(key);
-    if (b.agentId === core.state.currentAgentId && !isPhone()) autoOpen(b.agentId);
+    // A PC's Chrome is on the user's own screen: its tab is not opened by itself.
+    if (!b.computer && b.agentId === core.state.currentAgentId && !isPhone()) autoOpen(b.agentId);
   }
   known = now;
-  if (current && !current.ws && !status?.open?.some((b) => b.agentId === current.agentId)) showClosed();
+  if (current && !current.ws && !status?.open?.some((b) => keyOf(b) === current.path)) showClosed();
 });
 
 /* ---- Wiring ------------------------------------------------------------- */
@@ -470,7 +515,7 @@ bindInput();
 bindBar();
 void api("/api/browser").then((data) => {
   status = data;
-  known = new Set((data?.open ?? []).map((b) => b.agentId));
-  for (const b of data?.open ?? []) autoOpened.add(`${b.agentId}@${b.openedAt}`);
+  known = new Set((data?.open ?? []).map(keyOf));
+  for (const b of data?.open ?? []) autoOpened.add(`${keyOf(b)}@${b.openedAt}`);
 }).catch(() => {});
 })();

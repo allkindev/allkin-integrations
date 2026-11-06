@@ -46,6 +46,19 @@ vous tapez va à Chrome et nulle part ailleurs, ni dans la conversation, ni dans
 - L'agent ne tape jamais un mot de passe : Allkin refuse, et il vous passe la main.
 - Les téléchargements atterrissent dans le dossier `Downloads/` de l'agent.
 
+## Le Chrome de votre propre ordinateur
+
+Quand Allkin Client est ouvert sur ce serveur et que son réglage **Navigateur** est allumé pour
+ce serveur, un agent qui a aussi le droit **Vos ordinateurs** peut ouvrir **le Chrome de votre
+PC**, sous vos yeux : la fenêtre apparaît sur votre écran, dans un profil « Allkin » à part (vos
+sessions y restent d'une fois sur l'autre, vos mots de passe n'y sont pas), et l'agent y
+navigue comme dans le sien. Un clic ou une touche de votre part dans la fenêtre reprend la
+main : l'agent attend, et reprend quinze secondes après votre dernier geste. Fermer la fenêtre
+ferme le navigateur de l'agent, qui ne le rouvre pas de lui-même. Les cartes et les lignes de la
+conversation disent « Dans le Chrome de … ». Cette intégration n'ouvre pas d'onglet pour ce
+navigateur-là — il est sur votre écran —, mais **Paramètres › Navigateur › Voir** le montre
+quand même, depuis un téléphone par exemple.
+
 ## Ce que le navigateur n'atteint pas
 
 Le réseau de la machine (localhost, adresses privées, Tailscale) reste hors de portée tant que
