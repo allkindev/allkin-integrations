@@ -1,0 +1,139 @@
+{
+  "name": "SearXNG",
+  "version": "1.0.0",
+  "description": "Un moteur de recherche à vous, sur votre machine : SearXNG interroge plusieurs moteurs à la fois sans vous suivre. Cherchez depuis un onglet d'Allkin — web, images, vidéos, actualités — et donnez la même recherche à vos agents par le service « SearXNG ». L'intégration installe et lance SearXNG elle-même, sans Docker.",
+  "author": "searxng/searxng — intégration Allkin",
+  "homepage": "https://github.com/searxng/searxng",
+  "permissions": [
+    {
+      "id": "network",
+      "reason": "Télécharge SearXNG et ses paquets Python au premier démarrage, écoute sur un port local, et interroge les moteurs de recherche à chaque recherche."
+    },
+    {
+      "id": "exec",
+      "reason": "Lance git et python3 pour installer SearXNG dans son dossier de données, puis SearXNG lui-même."
+    },
+    {
+      "id": "interface",
+      "reason": "Ajoute la page de recherche à Allkin : son onglet et son entrée dans la fenêtre Système."
+    }
+  ],
+  "settings": [
+    {
+      "key": "port",
+      "label": "Port local",
+      "type": "number",
+      "default": 9350,
+      "required": true,
+      "help": "Port d'écoute de l'intégration, sur 127.0.0.1 uniquement. C'est aussi l'adresse à donner au service « SearXNG » : http://127.0.0.1:9350."
+    },
+    {
+      "key": "safeSearch",
+      "label": "Filtre de contenu",
+      "type": "select",
+      "default": "0",
+      "options": [
+        { "value": "0", "label": "Aucun" },
+        { "value": "1", "label": "Modéré" },
+        { "value": "2", "label": "Strict" }
+      ],
+      "help": "Ce que SearXNG demande aux moteurs d'écarter des résultats."
+    },
+    {
+      "key": "autoUpdate",
+      "label": "Mettre SearXNG à jour",
+      "type": "boolean",
+      "default": true,
+      "help": "Une fois par semaine, au démarrage de l'intégration. SearXNG suit les moteurs de recherche au jour le jour : une copie laissée telle quelle finit par ne plus rien trouver."
+    }
+  ],
+  "service": {
+    "command": "node",
+    "args": ["start.mjs"]
+  },
+  "web": {
+    "portSetting": "port",
+    "path": "/"
+  },
+  "ui": {
+    "apiVersion": 1,
+    "provides": ["searxng"],
+    "html": ["view.html"],
+    "styles": ["searxng.css"],
+    "scripts": ["locales.js", "searxng.js"]
+  },
+  "locales": {
+    "en": {
+      "name": "SearXNG",
+      "description": "A search engine of your own, on your machine: SearXNG asks several engines at once without following you. Search from an Allkin tab — web, images, videos, news — and give the same search to your agents through the service “SearXNG”. The integration installs and runs SearXNG itself, without Docker.",
+      "permissions": {
+        "network": "Downloads SearXNG and its Python packages on first start, listens on a local port, and asks the search engines at every search.",
+        "exec": "Runs git and python3 to install SearXNG into its data folder, then SearXNG itself.",
+        "interface": "Adds the search page to Allkin: its tab and its entry in the System window."
+      },
+      "settings": {
+        "port": {
+          "label": "Local port",
+          "help": "Port the integration listens on, on 127.0.0.1 only. It is also the address to give the service “SearXNG”: http://127.0.0.1:9350."
+        },
+        "safeSearch": {
+          "label": "Content filter",
+          "help": "What SearXNG asks the engines to leave out of the results.",
+          "options": { "0": "None", "1": "Moderate", "2": "Strict" }
+        },
+        "autoUpdate": {
+          "label": "Keep SearXNG up to date",
+          "help": "Once a week, when the integration starts. SearXNG follows the search engines day by day: a copy left alone ends up finding nothing."
+        }
+      }
+    },
+    "es": {
+      "name": "SearXNG",
+      "description": "Un buscador propio, en su máquina: SearXNG consulta varios buscadores a la vez sin seguirle. Busque desde una pestaña de Allkin — web, imágenes, vídeos, noticias — y dé la misma búsqueda a sus agentes mediante el servicio «SearXNG». La integración instala y ejecuta SearXNG por sí misma, sin Docker.",
+      "permissions": {
+        "network": "Descarga SearXNG y sus paquetes de Python en el primer inicio, escucha en un puerto local y consulta los buscadores en cada búsqueda.",
+        "exec": "Ejecuta git y python3 para instalar SearXNG en su carpeta de datos, y luego el propio SearXNG.",
+        "interface": "Añade la página de búsqueda a Allkin: su pestaña y su entrada en la ventana Sistema."
+      },
+      "settings": {
+        "port": {
+          "label": "Puerto local",
+          "help": "Puerto de escucha de la integración, solo en 127.0.0.1. Es también la dirección que hay que dar al servicio «SearXNG»: http://127.0.0.1:9350."
+        },
+        "safeSearch": {
+          "label": "Filtro de contenido",
+          "help": "Lo que SearXNG pide a los buscadores que descarten de los resultados.",
+          "options": { "0": "Ninguno", "1": "Moderado", "2": "Estricto" }
+        },
+        "autoUpdate": {
+          "label": "Mantener SearXNG actualizado",
+          "help": "Una vez por semana, al iniciar la integración. SearXNG sigue a los buscadores día a día: una copia abandonada acaba por no encontrar nada."
+        }
+      }
+    },
+    "de": {
+      "name": "SearXNG",
+      "description": "Eine eigene Suchmaschine auf Ihrer Maschine: SearXNG befragt mehrere Suchmaschinen gleichzeitig, ohne Sie zu verfolgen. Suchen Sie in einem Tab von Allkin — Web, Bilder, Videos, Nachrichten — und geben Sie dieselbe Suche Ihren Agenten über den Dienst „SearXNG“. Die Integration installiert und startet SearXNG selbst, ohne Docker.",
+      "permissions": {
+        "network": "Lädt SearXNG und seine Python-Pakete beim ersten Start herunter, lauscht auf einem lokalen Port und befragt bei jeder Suche die Suchmaschinen.",
+        "exec": "Startet git und python3, um SearXNG in seinen Datenordner zu installieren, dann SearXNG selbst.",
+        "interface": "Fügt Allkin die Suchseite hinzu: ihren Tab und ihren Eintrag im Systemfenster."
+      },
+      "settings": {
+        "port": {
+          "label": "Lokaler Port",
+          "help": "Port, auf dem die Integration lauscht, nur auf 127.0.0.1. Es ist auch die Adresse für den Dienst „SearXNG“: http://127.0.0.1:9350."
+        },
+        "safeSearch": {
+          "label": "Inhaltsfilter",
+          "help": "Was SearXNG die Suchmaschinen aus den Ergebnissen weglassen lässt.",
+          "options": { "0": "Keiner", "1": "Moderat", "2": "Streng" }
+        },
+        "autoUpdate": {
+          "label": "SearXNG aktuell halten",
+          "help": "Einmal pro Woche, beim Start der Integration. SearXNG folgt den Suchmaschinen Tag für Tag: Eine sich selbst überlassene Kopie findet irgendwann nichts mehr."
+        }
+      }
+    }
+  }
+}

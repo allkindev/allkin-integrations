@@ -1,6 +1,6 @@
 {
   "name": "Bloc-notes",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "Des notes rangées par dossiers, écrites dans l'éditeur markdown d'Allkin : un arbre de dossiers et de notes, recherche, épingles, corbeille, images, et « Demander à un agent » pour envoyer une note dans une conversation. Chaque note est un fichier .md du dossier partagé, que les agents lisent et écrivent aussi.",
   "author": "Allkin",
   "requires": [

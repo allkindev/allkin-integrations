@@ -275,7 +275,7 @@
     {
       "id": "notes",
       "name": "Bloc-notes",
-      "version": "1.0.9",
+      "version": "1.0.10",
       "description": "Des notes rangées par dossiers, écrites dans l'éditeur markdown d'Allkin : un arbre de dossiers et de notes, recherche, épingles, corbeille, images, et « Demander à un agent » pour envoyer une note dans une conversation. Chaque note est un fichier .md du dossier partagé, que les agents lisent et écrivent aussi.",
       "author": "Allkin",
       "permissions": [
@@ -348,8 +348,8 @@
         },
         {
           "path": "notes.css",
-          "size": 16014,
-          "sha256": "edc464ca7ee9d6f2c1fad8c0cb4e20f91e3da6716c75eccd5cd538c8f5421f15"
+          "size": 16017,
+          "sha256": "1f657dacf0b2b4eceadf4cf851e4d1f52282e7edcf30aab1fde849f442bdfd02"
         },
         {
           "path": "notes.js",
@@ -358,8 +358,8 @@
         },
         {
           "path": "plugin.json",
-          "size": 2425,
-          "sha256": "51a9277fea0a5562c7f417512d23c4f86e455d4b74876bfd496d06e2f2271b4b"
+          "size": 2426,
+          "sha256": "db941aaa1f9cbc30e9ae046bd17d7aaec56aec854cae912bd925c6f605e22f9e"
         },
         {
           "path": "view.html",
@@ -477,6 +477,119 @@
       ]
     },
     {
+      "id": "searxng",
+      "name": "SearXNG",
+      "version": "1.0.0",
+      "description": "Un moteur de recherche à vous, sur votre machine : SearXNG interroge plusieurs moteurs à la fois sans vous suivre. Cherchez depuis un onglet d'Allkin — web, images, vidéos, actualités — et donnez la même recherche à vos agents par le service « SearXNG ». L'intégration installe et lance SearXNG elle-même, sans Docker.",
+      "author": "searxng/searxng — intégration Allkin",
+      "homepage": "https://github.com/searxng/searxng",
+      "permissions": [
+        {
+          "id": "network",
+          "reason": "Télécharge SearXNG et ses paquets Python au premier démarrage, écoute sur un port local, et interroge les moteurs de recherche à chaque recherche."
+        },
+        {
+          "id": "exec",
+          "reason": "Lance git et python3 pour installer SearXNG dans son dossier de données, puis SearXNG lui-même."
+        },
+        {
+          "id": "interface",
+          "reason": "Ajoute la page de recherche à Allkin : son onglet et son entrée dans la fenêtre Système."
+        }
+      ],
+      "service": true,
+      "web": true,
+      "ui": true,
+      "icon": "icon.svg",
+      "updatedAt": "2026-11-10T22:47:22.379Z",
+      "locales": {
+        "en": {
+          "name": "SearXNG",
+          "description": "A search engine of your own, on your machine: SearXNG asks several engines at once without following you. Search from an Allkin tab — web, images, videos, news — and give the same search to your agents through the service “SearXNG”. The integration installs and runs SearXNG itself, without Docker.",
+          "permissions": {
+            "network": "Downloads SearXNG and its Python packages on first start, listens on a local port, and asks the search engines at every search.",
+            "exec": "Runs git and python3 to install SearXNG into its data folder, then SearXNG itself.",
+            "interface": "Adds the search page to Allkin: its tab and its entry in the System window."
+          }
+        },
+        "es": {
+          "name": "SearXNG",
+          "description": "Un buscador propio, en su máquina: SearXNG consulta varios buscadores a la vez sin seguirle. Busque desde una pestaña de Allkin — web, imágenes, vídeos, noticias — y dé la misma búsqueda a sus agentes mediante el servicio «SearXNG». La integración instala y ejecuta SearXNG por sí misma, sin Docker.",
+          "permissions": {
+            "network": "Descarga SearXNG y sus paquetes de Python en el primer inicio, escucha en un puerto local y consulta los buscadores en cada búsqueda.",
+            "exec": "Ejecuta git y python3 para instalar SearXNG en su carpeta de datos, y luego el propio SearXNG.",
+            "interface": "Añade la página de búsqueda a Allkin: su pestaña y su entrada en la ventana Sistema."
+          }
+        },
+        "de": {
+          "name": "SearXNG",
+          "description": "Eine eigene Suchmaschine auf Ihrer Maschine: SearXNG befragt mehrere Suchmaschinen gleichzeitig, ohne Sie zu verfolgen. Suchen Sie in einem Tab von Allkin — Web, Bilder, Videos, Nachrichten — und geben Sie dieselbe Suche Ihren Agenten über den Dienst „SearXNG“. Die Integration installiert und startet SearXNG selbst, ohne Docker.",
+          "permissions": {
+            "network": "Lädt SearXNG und seine Python-Pakete beim ersten Start herunter, lauscht auf einem lokalen Port und befragt bei jeder Suche die Suchmaschinen.",
+            "exec": "Startet git und python3, um SearXNG in seinen Datenordner zu installieren, dann SearXNG selbst.",
+            "interface": "Fügt Allkin die Suchseite hinzu: ihren Tab und ihren Eintrag im Systemfenster."
+          }
+        }
+      },
+      "files": [
+        {
+          "path": "README-DE.md",
+          "size": 4678,
+          "sha256": "019f9866065fc11a49264ec1e9f1f62581038f236bc888138b77b3912c1fe70c"
+        },
+        {
+          "path": "README-EN.md",
+          "size": 4187,
+          "sha256": "25a3fd201c78f041005850c94f94a15d81d039f849df9c7424e9df5d1a379699"
+        },
+        {
+          "path": "README-ES.md",
+          "size": 4571,
+          "sha256": "e59fd9a0e959495af619d89c7dc783b2383b9566ee8796ff996b8326416863ef"
+        },
+        {
+          "path": "README.md",
+          "size": 4683,
+          "sha256": "668d6ceeac9e56e79e4ec172e7933b779099ce107923bc3dbd862772cd61ef5f"
+        },
+        {
+          "path": "icon.svg",
+          "size": 738,
+          "sha256": "8a36cc8e76e74d78aa0653b7b70c190638b0cb8f32f05ff7473117fee34e6b25"
+        },
+        {
+          "path": "locales.js",
+          "size": 16047,
+          "sha256": "bb05022ce9af2e03d3fdf987f9e90caf5a443fe03594774a8786119ce3f88088"
+        },
+        {
+          "path": "plugin.json",
+          "size": 6901,
+          "sha256": "06faf1f35a29de9cc37f6dccea00caf860ee4cf33ae4dc008e17d63c86af4e47"
+        },
+        {
+          "path": "searxng.css",
+          "size": 5313,
+          "sha256": "3f14b289c47708ca1a25434c4abed2d7c40d78d719bca5660ad3da5e4f553cc6"
+        },
+        {
+          "path": "searxng.js",
+          "size": 21781,
+          "sha256": "d42c88c71900cdea5d8415a9d65c49e2ebfc30a2e510f05d70e8b43b08b424a1"
+        },
+        {
+          "path": "start.mjs",
+          "size": 16837,
+          "sha256": "d52180b399429bb4f3e9cfac9ff8a34e5287e12e7eee106fab42c99814846a1a"
+        },
+        {
+          "path": "view.html",
+          "size": 1500,
+          "sha256": "d89733f7f0d6fce27bab9ef40115943d61e96ad386c23b4b93dbfc6a38abcb84"
+        }
+      ]
+    },
+    {
       "id": "telegram-bridge",
       "name": "Pont Telegram",
       "version": "1.0.8",
@@ -504,7 +617,7 @@
       "web": true,
       "ui": true,
       "icon": "icon.svg",
-      "updatedAt": "2026-11-06T17:44:24+01:00",
+      "updatedAt": "2026-11-06T21:57:59+01:00",
       "locales": {
         "en": {
           "name": "Telegram bridge",

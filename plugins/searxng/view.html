@@ -1,0 +1,25 @@
+<template data-slot="views">
+  <!-- SearXNG: the page bar — the search, the categories (a choice among a
+       few), the period (a choice among many) —, then the body, where
+       searxng.js draws what the launcher is at (installing, failed, stopped)
+       or the results, and the foot with their count. Icons are filled in by
+       searxng.js from data-sx-icon. -->
+  <div class="sx-view hidden" id="sx-view">
+    <header class="page-bar sx-bar">
+      <form class="sx-form" id="sx-form" role="search">
+        <label class="hub-search sx-search">
+          <span class="sx-search-icon" data-sx-icon="magnifying-glass" aria-hidden="true"></span>
+          <input type="search" id="sx-q" maxlength="400" autocomplete="off" spellcheck="false" enterkeyhint="search" data-i18n-placeholder="plugin.searxng.search.placeholder" data-i18n-aria-label="plugin.searxng.search.placeholder" />
+        </label>
+      </form>
+      <div class="hub-chips" id="sx-cats" role="group" data-i18n-aria-label="plugin.searxng.cat.label"></div>
+      <button type="button" class="secondary sx-time" id="sx-time" aria-haspopup="menu" data-i18n-title="plugin.searxng.time.label"><span id="sx-time-label"></span><span class="sx-caret" data-sx-icon="caret-down" aria-hidden="true"></span></button>
+    </header>
+
+    <div class="sx-body" id="sx-body"></div>
+
+    <div class="page-foot sx-foot hidden" id="sx-foot">
+      <span class="page-foot-meta" id="sx-count" role="status"></span>
+    </div>
+  </div>
+</template>
