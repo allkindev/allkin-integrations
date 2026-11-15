@@ -1,92 +1,91 @@
 # Recordr
 
-Écoute le micro de l'appareil sur lequel Allkin est ouvert, écrit ce qui se dit au fil de la parole
-et sépare les interlocuteurs : un bloc par prise de parole, une couleur par voix. La reconnaissance
-est faite par un **service audio** connecté à Allkin — aujourd'hui [Soniox](https://soniox.com),
-un service en ligne payant à l'usage.
+Listens to the microphone of the device Allkin is open on, writes what is said as it is spoken and
+separates the speakers: one block per turn, one colour per voice. Recognition is done by an
+**audio service** connected to Allkin — today [Soniox](https://soniox.com), an online service
+billed by use.
 
-## Mise en route
+## Getting started
 
-1. **Services › Ajouter › Soniox** : coller la clé API créée sur
-   [console.soniox.com](https://console.soniox.com). C'est le même geste que pour un service
-   d'images : la clé est gardée par Allkin, pas par l'intégration.
-2. Sur la page de l'intégration, accorder le droit **Réseau**, choisir ce service dans **Service audio**
-   et la **langue parlée** (indiquée, elle améliore la reconnaissance).
-3. Cocher **Autoriser le démarrage en service**, puis enregistrer.
-4. **Ouvrir la page**, appuyer sur **Écouter** et autoriser le micro quand le navigateur le demande.
+1. **Services › Add › Soniox**: paste the API key created on
+   [console.soniox.com](https://console.soniox.com). It is the same step as for an image service:
+   the key is kept by Allkin, not by the integration.
+2. On the integration's page, grant the **Network** right, pick that service in **Audio service** and
+   the **spoken language** (given, it improves recognition).
+3. Tick **Allow it to start as a service**, then save.
+4. **Open the page**, press **Start listening** and allow the microphone when the browser asks.
 
-## Le micro demande HTTPS
+## The microphone needs HTTPS
 
-Un navigateur ne donne le micro qu'à une page servie en **HTTPS** (ou sur `localhost`). Allkin ouvert
-par `http://192.168.x.x:9191` ne l'obtiendra pas : il faut passer par son adresse HTTPS
-(`tailscale serve`, Caddy…). La page le dit quand c'est le cas.
+A browser only hands the microphone to a page served over **HTTPS** (or on `localhost`). Allkin
+opened through `http://192.168.x.x:9191` will not get it: go through its HTTPS address
+(`tailscale serve`, Caddy…). The page says so when that is the case.
 
-## Ce que fait la page
+## What the page does
 
-- **Écouter / Pause / Arrêter** — le texte arrive mot à mot. Les mots en gris ne sont pas encore
-  définitifs : le service peut les corriger pendant une seconde ou deux. L'enregistreur, en bas de la page, dit où en est l'écoute, montre le son que le micro entend et
-  compte sa durée ; la barre d'espace met en pause et reprend. **Pause** garde la connexion
-  (et la numérotation des voix) ; après dix minutes de pause elle est relâchée, et la reprise en
-  ouvre une nouvelle.
-- **L'écoute continue en arrière-plan** — on peut passer à un autre onglet d'Allkin, à un autre
-  onglet du navigateur ou à une autre fenêtre : la capture et l'envoi ne dépendent pas de la page
-  affichée. Le navigateur demande confirmation avant de fermer ou de recharger l'onglet pendant une
-  écoute.
-- **Reconnexion automatique** — si la connexion au service audio tombe, la page la rétablit seule
-  (pendant cinq minutes au plus) et garde jusqu'à vingt secondes d'audio en attendant. Un trait
-  « Reprise de l'écoute » marque l'endroit : le service renumérote alors les voix, qui reçoivent
-  de nouveaux numéros.
-- **Interlocuteurs** — le service distingue les voix ; il ne sait pas qui parle. Un clic sur
-  « Interlocuteur 1 », dans le texte ou dans le panneau de droite, lui donne son vrai nom partout.
-  Le panneau montre le temps de parole de chacun et sa part du total.
-- **Titre**, **Copier**, **Exporter** — la transcription s'exporte en Markdown (`.md`), en texte brut
-  (`.txt`) ou en sous-titres (`.srt`), avec les noms et l'horaire de chaque prise de parole. La
-  petite icône qui apparaît au survol d'une intervention copie celle-ci seule.
-- **Rechercher** — la loupe de la barre (ou Ctrl/⌘ + F) cherche dans la transcription affichée :
-  les résultats sont surlignés, Entrée passe au suivant.
-- **Corriger** — une fois l'écoute terminée, un clic dans un texte permet de le corriger ; Entrée
-  garde la correction, Échap l'abandonne. Un texte vidé retire l'intervention.
-- **Horaires** — l'horloge de la barre affiche ou masque l'horaire de chaque intervention, à l'écran
-  comme dans les exports.
-- **Panneaux** — l'historique et les interlocuteurs se replient par leur bouton, pour ne garder que
-  le texte. Le menu ⋯ commence une nouvelle transcription ou supprime celle affichée.
-- **Historique** — chaque écoute est enregistrée sur la machine d'Allkin, au fil de l'eau
-  (`plugin-data/recordr/data/transcripts/`). On la retrouve par son titre, on la rouvre, on la
-  renomme, on la supprime.
+- **Start listening / Pause / Stop** — the text arrives word by word. Grey words are not final yet:
+  the service may correct them for a second or two. The recorder, at the bottom of the page, tells where the listening stands, shows the sound the
+  microphone hears and counts its duration; the space bar pauses and resumes. **Pause** keeps the connection
+  (and the numbering of the voices); after ten minutes of pause it is let go, and resuming opens a
+  new one.
+- **Listening goes on in the background** — you can switch to another Allkin tab, another browser
+  tab or another window: capturing and sending do not depend on the page being shown. The browser
+  asks for confirmation before closing or reloading the tab while listening.
+- **Automatic reconnection** — if the connection to the audio service drops, the page restores it
+  by itself (for five minutes at most) and keeps up to twenty seconds of audio in the meantime. A
+  “Listening resumed” line marks the place: the service then renumbers the voices, which get new
+  numbers.
+- **Speakers** — the service tells the voices apart; it does not know who is speaking. A click on
+  “Speaker 1”, in the text or in the panel on the right, gives the real name everywhere. The panel
+  shows each one's speaking time and share of the total.
+- **Title**, **Copy**, **Export** — the transcript exports as Markdown (`.md`), plain text (`.txt`)
+  or subtitles (`.srt`), with the names and the time of each turn. The small icon that appears
+  when hovering a turn copies that turn alone.
+- **Search** — the magnifying glass of the bar (or Ctrl/⌘ + F) searches the transcript shown:
+  matches are highlighted, Enter goes to the next one.
+- **Correct** — once the listening is over, a click in a text lets you correct it; Enter keeps the
+  correction, Escape drops it. A text emptied removes the turn.
+- **Times** — the clock of the bar shows or hides the time of each turn, on screen and in the
+  exports.
+- **Panels** — the history and the speakers fold away with their button, to keep only the text.
+  The ⋯ menu starts a new transcript or deletes the one shown.
+- **History** — every session is saved on Allkin's machine as it goes
+  (`plugin-data/recordr/data/transcripts/`). It can be found by its title, opened again, renamed,
+  deleted.
 
-Appuyer sur **Écouter** alors qu'une transcription est affichée en commence une nouvelle.
+Pressing **Start listening** while a transcript is on screen starts a new one.
 
-## Où va l'audio, où reste la clé
+## Where the audio goes, where the key stays
 
-La clé du service audio ne quitte pas Allkin. À chaque écoute, la page demande à Allkin une
-**clé temporaire** (deux minutes, le temps d'ouvrir la connexion) ; l'audio part ensuite du
-navigateur directement chez le service, sans passer par la machine d'Allkin. L'intégration elle-même
-ne voit aucune clé : son service ne fait que servir la page et garder les transcriptions.
+The key of the audio service never leaves Allkin. For each session, the page asks Allkin for a
+**temporary key** (two minutes, the time to open the connection); the audio then goes from the
+browser straight to the service, without passing through Allkin's machine. The integration itself sees
+no key: its service only serves the page and keeps the transcripts.
 
-## Limites
+## Limits
 
-- **Fermer l'onglet de l'intégration dans Allkin, ou recharger la page, arrête l'écoute.** Ce qui était
-  transcrit est déjà enregistré.
-- **Un seul micro pour plusieurs personnes** : quand on se coupe la parole ou qu'on est loin du
-  micro, l'attribution se trompe. Un micro de table posé au milieu aide beaucoup.
-- **Sur un téléphone**, l'écran doit rester allumé et le navigateur au premier plan : la page
-  demande au système de ne pas verrouiller l'écran, mais il peut refuser en mode économie d'énergie,
-  et un téléphone coupe le micro d'un navigateur passé en arrière-plan. Au retour, la page reprend
-  l'écoute d'elle-même quand le système le permet.
-- **Soniox facture la durée de la connexion**, pause comprise (d'où le relâchement après dix
-  minutes), et une connexion dure cinq heures au plus ; au-delà, la page en rouvre une.
-- **Confidentialité** : l'audio part chez le service audio, depuis le navigateur. Enregistrer des
-  personnes suppose leur accord.
+- **Closing the integration's tab in Allkin, or reloading the page, ends the listening.** What was
+  transcribed is already saved.
+- **One microphone for several people**: when people talk over each other or sit far from the
+  microphone, attribution goes wrong. A table microphone in the middle helps a lot.
+- **On a phone**, the screen must stay on and the browser in front: the page asks the system not to
+  lock the screen, but it may refuse in battery saver mode, and a phone cuts the microphone of a
+  browser sent to the background. On return, the page resumes listening by itself when the system
+  allows it.
+- **Soniox bills the duration of the connection**, pauses included (hence letting go after ten
+  minutes), and a connection lasts five hours at most; beyond that, the page opens a new one.
+- **Privacy**: the audio goes to the audio service, from the browser. Recording people requires
+  their consent.
 
-## Réglages
+## Settings
 
-| Réglage | Rôle |
+| Setting | Role |
 |---|---|
-| Port local | Port du service sur `127.0.0.1` ; à changer seulement s'il est déjà pris. |
-| Service audio | Le service connecté qui transcrit (ajouté dans **Services**). Obligatoire. |
-| Langue parlée | Français, anglais, espagnol, allemand, ou automatique. |
-| Modèle | Vide = le modèle temps réel par défaut du service ; sinon son nom exact. |
+| Local port | The service's port on `127.0.0.1`; only to change if it is already taken. |
+| Audio service | The connected service that transcribes (added in **Services**). Required. |
+| Spoken language | French, English, Spanish, German, or automatic. |
+| Model | Empty = the service's default real-time model; otherwise its exact name. |
 
-## Droit demandé
+## Right requested
 
-**Réseau** — le service écoute sur un port local, pour servir sa page dans Allkin.
+**Network** — the service listens on a local port, to serve its page in Allkin.

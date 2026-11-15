@@ -11,6 +11,7 @@
 // SearXNG installs, then starts SearXNG on a port of its own and stands in
 // front of it:
 //
+//   GET /             a word for the frame of the web part (see ROOT_PAGE)
 //   GET /api/status   what the launcher is at (installing, running, failed…)
 //   GET /search       a search, answered as a short JSON — the page's and the
 //                     agents' one endpoint (the service "SearXNG")
@@ -361,9 +362,43 @@ async function search(url, res) {
   }
 }
 
+/** The root of the web part. The search page is Allkin's own tab, loaded
+ *  with Allkin's page: the frame of the web part is only shown while the page
+ *  has not been reloaded since the integration got its rights. It says so, in
+ *  the browser's language (the launcher knows nothing of Allkin's). */
+const ROOT_TEXTS = {
+  en: ["SearXNG is ready", "Reload Allkin's page to open the search: its tab is added when the page loads."],
+  fr: ["SearXNG est prêt", "Rechargez la page d'Allkin pour ouvrir la recherche : son onglet s'ajoute au chargement de la page."],
+  es: ["SearXNG está listo", "Recargue la página de Allkin para abrir la búsqueda: su pestaña se añade al cargar la página."],
+  de: ["SearXNG ist bereit", "Laden Sie die Seite von Allkin neu, um die Suche zu öffnen: Ihr Tab wird beim Laden der Seite hinzugefügt."],
+};
+const ROOT_PAGE = `<!doctype html>
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>SearXNG</title>
+<style>
+  :root { color-scheme: light dark; }
+  body { margin: 0; min-height: 100vh; display: grid; place-items: center; font: 14px/1.5 system-ui, sans-serif; background: #ffffff; color: #0f172a; }
+  main { max-width: 26rem; padding: 2rem; text-align: center; }
+  h1 { margin: 0 0 0.5rem; font-size: 17px; font-weight: 600; }
+  p { margin: 0; color: #475569; }
+  @media (prefers-color-scheme: dark) { body { background: #0f1726; color: #e2e8f0; } p { color: #94a3b8; } }
+</style></head>
+<body><main><h1 id="title"></h1><p id="text"></p></main>
+<script type="application/json" id="texts">${JSON.stringify(ROOT_TEXTS)}</script>
+<script>
+  const texts = JSON.parse(document.getElementById("texts").textContent);
+  const [title, text] = texts[(navigator.language || "en").slice(0, 2)] || texts.en;
+  document.getElementById("title").textContent = title;
+  document.getElementById("text").textContent = text;
+</script></body></html>
+`;
+
 const server = createServer((req, res) => {
   const url = new URL(req.url ?? "/", "http://localhost");
   if (req.method !== "GET") return sendJson(res, 405, { error: "method" });
+  if (url.pathname === "/") {
+    res.writeHead(200, { "Content-Type": "text/html; charset=utf-8", "Cache-Control": "no-store" });
+    return res.end(ROOT_PAGE);
+  }
   if (url.pathname === "/api/status") return sendJson(res, 200, status);
   if (url.pathname === "/search") return void search(url, res);
   if (url.pathname === "/healthz") {

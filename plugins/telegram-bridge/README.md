@@ -1,94 +1,92 @@
-# Pont Telegram
+# Telegram bridge
 
-Parlez à vos agents depuis Telegram. Vous créez autant de bots que vous voulez, chacun relié à
-**un ou plusieurs agents**, et vous les gérez depuis la page **Telegram** d'Allkin : qui peut
-leur écrire, quel agent répond, les conversations en cours. Chaque bot écoute en continu (long
-polling : rien à ouvrir sur votre box, aucune adresse publique). Quand un agent veut lancer une
-commande, elle arrive dans le chat avec deux boutons : **Autoriser** ou **Refuser**.
+Talk to your agents from Telegram. You create as many bots as you want, each bound to **one agent
+or several**, and you manage them from Allkin's **Telegram** page: who may write to them, which
+agent answers, the conversations under way. Every bot listens continuously (long polling: nothing
+to open on your router, no public address). When an agent wants to run a command, it comes in the
+chat with two buttons: **Approve** or **Refuse**.
 
-## Mise en route
+## Getting started
 
-1. Accordez les quatre droits de l'intégration, cochez **Autoriser le démarrage en service**,
-   enregistrez, puis rechargez la page d'Allkin (la page Telegram s'ajoute à l'interface).
-2. Ouvrez **Telegram** depuis la fenêtre Système, puis **Ajouter un bot** :
-   - dans Telegram, écrivez `/newbot` à **@BotFather** : un nom, puis un identifiant qui finit par
-     `bot`. Il vous répond par un **jeton** ;
-   - collez le jeton : Allkin le vérifie auprès de Telegram et affiche le bot reconnu ;
-   - choisissez le ou les agents qui répondent ; l'étoile désigne celui qui répond d'abord ;
-   - **Lancer le bot**.
-3. Écrivez au bot. Vous recevez un **code** et votre demande apparaît en haut de la page :
-   **Autoriser**, et vous pouvez lui parler.
+1. Grant the integration's four rights, tick **Allow starting as a service**, save, then reload
+   Allkin's page (the Telegram page joins the interface).
+2. Open **Telegram** from the System window, then **Add a bot**:
+   - in Telegram, write `/newbot` to **@BotFather**: a name, then a username ending in `bot`. It
+     answers with a **token**;
+   - paste the token: Allkin checks it with Telegram and shows the bot it recognized;
+   - choose the agent or agents that answer; the star picks the one that answers first;
+   - **Start the bot**.
+3. Write to the bot. You get a **code** and your request shows at the top of the page:
+   **Approve**, and you can talk to it.
 
-Plusieurs bots peuvent servir le même agent, et un bot peut servir plusieurs agents.
+Several bots can serve the same agent, and one bot can serve several agents.
 
-## La page Telegram
+## The Telegram page
 
-- **Le tableau des bots** : ses agents, les personnes qui peuvent lui écrire, les messages du jour
-  et des sept derniers jours, le dernier message, son état (à l'écoute, en pause, en erreur — un
-  jeton révoqué par exemple, avec ce qu'il faut faire).
-- **Une ligne se déplie** sur les conversations du bot : qui parle à quel agent, ce qui a été dit
-  en dernier, où en est la conversation (au travail, attend une validation, répondu), et un bouton
-  pour l'ouvrir dans Allkin.
-- **Les demandes d'accès** en haut : une personne inconnue qui écrit au bot reçoit un code ; vous
-  l'autorisez ou la refusez d'un clic.
-- Le menu **⋯** d'un bot : réglages, pause, lien d'invitation, ouvrir dans Telegram, supprimer.
-- La recherche et le filtre par agent dans la barre de la page.
+- **The table of bots**: its agents, the people who may write to it, today's and the last seven
+  days' messages, the last message, its state (listening, paused, in error — a revoked token for
+  instance, with what to do).
+- **A row unfolds** on the bot's conversations: who talks to which agent, what was said last,
+  where the conversation stands (at work, waiting for approval, answered), and a button to open it
+  in Allkin.
+- **Access requests** at the top: a stranger who writes to the bot gets a code; you approve or
+  refuse with one click.
+- A bot's **⋯** menu: settings, pause, invite link, open in Telegram, remove.
+- The search and the agent filter in the page bar.
 
-## Les réglages d'un bot
+## A bot's settings
 
-| Section    | Ce qu'on y règle                                                                                  |
-|------------|---------------------------------------------------------------------------------------------------|
-| Agents     | les agents du bot, celui par défaut ; changer d'agent avec `/agent` ; après combien de silence une nouvelle conversation commence |
-| Accès      | les personnes autorisées, l'agent de chacune, qui peut valider les commandes ; les invitations ; les groupes |
-| Validation | valider les commandes depuis Telegram, ou les refuser d'office                                     |
-| Messages   | accepter les fichiers et photos (déposés dans `Upload/` de l'agent) ; « en train d'écrire… »      |
-| Bot        | remplacer le jeton, le menu des commandes publié dans Telegram, la langue des messages du bot      |
+| Section  | What it sets                                                                                        |
+|----------|-----------------------------------------------------------------------------------------------------|
+| Agents   | the bot's agents, the default one; switching agents with `/agent`; after how long a silence a new conversation starts |
+| Access   | the allowed people, each one's agent, who may approve commands; invites; groups                     |
+| Approval | approving commands from Telegram, or refusing them outright                                         |
+| Messages | taking files and photos (dropped into the agent's `Upload/`); "typing…"                             |
+| Bot      | replacing the token, the command menu published in Telegram, the language of the bot's messages     |
 
-Un **lien d'invitation** (`t.me/<bot>?start=…`) ajoute une personne en un message : valable
-7 jours, une seule fois. Dans un **groupe**, le bot n'entre que si une personne autorisée l'y
-ajoute et si les groupes sont acceptés ; il n'y répond qu'aux personnes autorisées, quand on le
-mentionne ou qu'on lui répond.
+An **invite link** (`t.me/<bot>?start=…`) adds a person in one message: valid 7 days, once. In a
+**group**, the bot only stays if an allowed person added it and groups are accepted; there it
+answers only allowed people, when it is mentioned or answered.
 
-## Dans le chat
+## In the chat
 
-| Commande  | Effet                                                              |
-|-----------|--------------------------------------------------------------------|
-| `/agent`  | choisir l'agent à qui l'on parle, parmi ceux du bot (en boutons)   |
-| `/new`    | repartir sur une conversation vierge avec le même agent            |
-| `/who`    | l'agent et la conversation de ce chat                              |
-| `/help`   | ce que le bot comprend                                             |
+| Command  | Effect                                                         |
+|----------|----------------------------------------------------------------|
+| `/agent` | choose the agent you talk to, among the bot's (as buttons)     |
+| `/new`   | start a fresh conversation with the same agent                 |
+| `/who`   | the agent and the conversation of this chat                    |
+| `/help`  | what the bot understands                                       |
 
-Chaque chat garde sa conversation : elle survit aux redémarrages et se retrouve dans l'historique
-de l'agent. Les **formulaires** qu'un agent peut demander ne se remplissent pas depuis Telegram :
-ils sont annulés avec un mot d'explication.
+Every chat keeps its conversation: it survives restarts and shows in the agent's history.
+**Forms** an agent may ask for cannot be filled from Telegram: they are cancelled with a word of
+explanation.
 
-## Réglages de l'intégration
+## The integration's settings
 
-- **Port local** : où le service sert l'API de la page, sur 127.0.0.1 seulement ; la page passe
-  par Allkin, derrière votre session.
-- **Adresse de l'API Telegram** : à ne changer que pour un serveur Bot API à vous.
-- Les trois réglages **(ancienne version)** ne servent qu'une fois : le bot de la version
-  précédente est repris dans la page, avec ses utilisateurs autorisés. Laissez-les vides ensuite.
+- **Local port**: where the service serves the page's API, on 127.0.0.1 only; the page goes
+  through Allkin, behind your session.
+- **Telegram API address**: only to change for a Bot API server of your own.
+- The three **(previous version)** settings serve once: the bot of the previous version is taken
+  over into the page, with its allowed users. Leave them empty afterwards.
 
-## Droits
+## Rights
 
-| Droit      | Pourquoi                                                                               |
+| Right      | Why                                                                                    |
 |------------|----------------------------------------------------------------------------------------|
-| Réseau     | interroger Telegram pour chaque bot, y renvoyer les réponses, télécharger les fichiers ; servir l'API de la page en local |
-| Agents     | ouvrir une conversation avec un agent par la socket d'Allkin                           |
-| Fichiers   | déposer les fichiers reçus dans le dossier Upload de l'agent                           |
-| Interface  | ajouter la page Telegram à Allkin                                                      |
+| Network    | poll Telegram for each bot, send the answers back, download files; serve the page's API locally |
+| Agents     | open a conversation with an agent through Allkin's socket                              |
+| Files      | drop received files into the agent's Upload folder                                     |
+| Interface  | add the Telegram page to Allkin                                                        |
 
-Le bot ne donne aucun droit : chaque agent garde exactement ceux de sa page. Les jetons restent
-sur le serveur, dans le dossier privé de l'intégration ; ils ne sont jamais montrés ni donnés à
-un agent.
+The bot grants no right: every agent keeps exactly the rights of its page. Tokens stay on the
+server, in the integration's private folder; they are never shown nor given to an agent.
 
-## Quand ça ne marche pas
+## When it does not work
 
-- **La page dit que le service ne répond pas** : ouvrez la page de l'intégration, vérifiez que
-  les quatre droits sont accordés et que le service tourne ; son journal dit pourquoi il s'arrête.
-- **Jeton refusé** : le jeton a été révoqué dans @BotFather. Menu ⋯ › Réglages › Bot ›
-  Remplacer, avec le nouveau jeton du même bot.
-- **Lu ailleurs** : un autre programme (un autre serveur, un webhook) lit les messages de ce
-  bot ; un bot ne peut être lu que par un seul.
-- **Le bot ne répond pas à quelqu'un** : sa demande attend peut-être en haut de la page.
+- **The page says the service does not answer**: open the integration's page, check that the four
+  rights are granted and the service runs; its log says why it stops.
+- **Token refused**: the token was revoked in @BotFather. ⋯ menu › Settings › Bot › Replace, with
+  the same bot's new token.
+- **Read elsewhere**: another program (another server, a webhook) reads this bot's messages; a bot
+  can be read by one program only.
+- **The bot does not answer someone**: their request may be waiting at the top of the page.

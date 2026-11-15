@@ -1,6 +1,6 @@
 {
   "name": "SearXNG",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Un moteur de recherche à vous, sur votre machine : SearXNG interroge plusieurs moteurs à la fois sans vous suivre. Cherchez depuis un onglet d'Allkin — web, images, vidéos, actualités — et donnez la même recherche à vos agents par le service « SearXNG ». L'intégration installe et lance SearXNG elle-même, sans Docker.",
   "author": "searxng/searxng — intégration Allkin",
   "homepage": "https://github.com/searxng/searxng",

@@ -1,53 +1,52 @@
-# Pont Home Assistant
+# Home Assistant bridge
 
-Vos agents réagissent à ce qui se passe dans la maison. L'intégration reste connectée au websocket de
-Home Assistant et applique des **règles** : quand telle entité passe dans tel état (ou quand tel
-événement survient), il réveille l'agent de votre choix avec le message que vous avez écrit. La
-réponse de l'agent revient dans Home Assistant, en notification persistante ou sur votre téléphone.
+Your agents react to what happens in the house. The integration stays connected to Home Assistant's
+websocket and applies **rules**: when an entity reaches a state (or an event happens), it wakes the
+agent of your choice with the message you wrote. The agent's answer comes back into Home
+Assistant, as a persistent notification or on your phone.
 
-## Mise en route
+## Getting started
 
-1. Dans Home Assistant : **Profil → Sécurité → Jetons d'accès longue durée → Créer un jeton**.
-2. Collez l'adresse de Home Assistant et le jeton dans les réglages de l'intégration.
-3. Écrivez vos règles, une par ligne.
-4. Accordez les deux droits, cochez **Autoriser le démarrage en service**, enregistrez.
+1. In Home Assistant: **Profile → Security → Long-lived access tokens → Create token**.
+2. Paste Home Assistant's address and the token in the integration's settings.
+3. Write your rules, one per line.
+4. Grant the two rights, tick **Allow starting as a service**, save.
 
-## Les règles
+## The rules
 
 ```
-binary_sensor.porte_entree => on -> administrateur : La porte d'entrée vient de s'ouvrir, vérifiez les caméras.
-sensor.temperature_exterieure -> meteo : Il fait maintenant {state} °C dehors.
-light.* => on -> majordome : {name} vient de s'allumer.
-event:zha_event -> administrateur : Événement Zigbee : {data}
-# une ligne qui commence par # est ignorée
+binary_sensor.front_door => on -> administrator : The front door just opened, check the cameras.
+sensor.outdoor_temperature -> weather : It is now {state} °C outside.
+light.* => on -> butler : {name} just turned on.
+event:zha_event -> administrator : Zigbee event: {data}
+# a line starting with # is ignored
 ```
 
-| Forme                          | Déclenche                                             |
-|--------------------------------|-------------------------------------------------------|
-| `entité => état -> agent : …`  | quand l'entité prend cet état                         |
-| `entité -> agent : …`          | à chaque changement d'état de l'entité                |
-| `domaine.* …`                  | toutes les entités du domaine (`*` partout dans l'id) |
-| `event:type -> agent : …`      | à chaque événement de ce type                         |
+| Form                            | Fires                                                  |
+|---------------------------------|--------------------------------------------------------|
+| `entity => state -> agent : …`  | when the entity reaches that state                     |
+| `entity -> agent : …`           | on every state change of the entity                    |
+| `domain.* …`                    | every entity of the domain (`*` anywhere in the id)    |
+| `event:type -> agent : …`       | on every event of that type                            |
 
-Dans le message : `{entity}` (l'identifiant), `{name}` (le nom affiché), `{state}`, `{old}`
-(l'état précédent), `{attrs}` (les attributs en JSON), `{data}` (les données de l'événement en
-JSON). L'agent reçoit le message tel quel : écrivez-le comme une consigne.
+In the message: `{entity}` (the id), `{name}` (the friendly name), `{state}`, `{old}` (the
+previous state), `{attrs}` (the attributes as JSON), `{data}` (the event data as JSON). The agent
+gets the message as is: write it as an instruction.
 
-## Ce qu'il faut savoir
+## Good to know
 
-- **Une conversation par agent**, conservée d'un réveil à l'autre et visible dans son
-  historique : l'agent garde le fil de ce qui s'est passé.
-- **Le délai minimum** entre deux réveils d'une même règle évite qu'un capteur bavard réveille
-  l'agent en boucle (60 s par défaut).
-- Un agent réveillé **ne peut pas faire valider une commande** : personne n'est là pour
-  répondre. Elle est refusée et la notification le dit. Donnez-lui des commandes en liste blanche
-  si vous voulez qu'il agisse.
-- Pour agir en retour sur la maison (allumer, fermer, lire un état), donnez à l'agent le service
-  **Home Assistant** d'Allkin.
+- **One conversation per agent**, kept from one wake-up to the next and visible in its history:
+  the agent keeps track of what happened.
+- **The minimum delay** between two wake-ups of the same rule keeps a chatty sensor from waking
+  the agent in a loop (60 s by default).
+- A woken agent **cannot get a command approved**: nobody is there to answer. It is refused and
+  the notification says so. Whitelist its commands if you want it to act.
+- To act back on the house (turn on, close, read a state), give the agent Allkin's
+  **Home Assistant** service.
 
-## Droits
+## Rights
 
-| Droit   | Pourquoi                                                              |
-|---------|-----------------------------------------------------------------------|
-| Réseau  | rester connecté au websocket de Home Assistant, renvoyer les réponses |
-| Agents  | réveiller l'agent d'une règle par la socket d'Allkin                  |
+| Right   | Why                                                                  |
+|---------|----------------------------------------------------------------------|
+| Network | stay connected to Home Assistant's websocket, send answers back      |
+| Agents  | wake the agent of a rule through Allkin's socket                     |
