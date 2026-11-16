@@ -17,7 +17,7 @@
       "web": false,
       "ui": true,
       "icon": "icon.svg",
-      "updatedAt": "2026-11-06T17:44:24+01:00",
+      "updatedAt": "2026-11-15T10:10:43+01:00",
       "locales": {
         "en": {
           "name": "Browser",
@@ -114,7 +114,7 @@
       "web": false,
       "ui": false,
       "icon": "icon.svg",
-      "updatedAt": "2026-11-06T10:35:18+01:00",
+      "updatedAt": "2026-11-15T10:10:43+01:00",
       "locales": {
         "en": {
           "name": "Home Assistant bridge",
@@ -198,7 +198,7 @@
       "requires": [
         "markdown-editor"
       ],
-      "updatedAt": "2026-11-10T23:47:22+01:00",
+      "updatedAt": "2026-11-15T10:10:43+01:00",
       "locales": {
         "en": {
           "name": "Notes",
@@ -291,7 +291,7 @@
       "web": true,
       "ui": false,
       "icon": "icon.svg",
-      "updatedAt": "2026-11-06T10:35:18+01:00",
+      "updatedAt": "2026-11-15T10:10:43+01:00",
       "locales": {
         "en": {
           "name": "Recordr",
@@ -408,7 +408,7 @@
       "web": true,
       "ui": true,
       "icon": "icon.svg",
-      "updatedAt": "2026-11-10T23:47:22+01:00",
+      "updatedAt": "2026-11-15T10:10:43+01:00",
       "locales": {
         "en": {
           "name": "SearXNG",
@@ -524,7 +524,7 @@
       "web": true,
       "ui": true,
       "icon": "icon.svg",
-      "updatedAt": "2026-11-06T21:57:59+01:00",
+      "updatedAt": "2026-11-15T10:10:43+01:00",
       "locales": {
         "en": {
           "name": "Telegram bridge",
@@ -640,7 +640,7 @@
       "web": true,
       "ui": false,
       "icon": "icon.svg",
-      "updatedAt": "2026-11-06T10:35:18+01:00",
+      "updatedAt": "2026-11-15T10:10:43+01:00",
       "locales": {
         "en": {
           "name": "WeTTY",
